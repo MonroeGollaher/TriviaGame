@@ -4,6 +4,9 @@
     <h1 class="my-5 bg-dark text-light p-3 rounded d-flex align-items-center">
       <span class="mx-2 text-white">Trivia Game</span>
     </h1>
+    <h3 class="my-5 bg-dark text-light p-3 rounded d-flex align-items-center">
+      <span class="mx-2 text-white">Bar Trivia Management Software</span>
+    </h3>
   </div>
 </template>
 
