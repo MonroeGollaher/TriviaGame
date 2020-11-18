@@ -1,5 +1,7 @@
-function myFunction(str){
+function myFunction(str) {
   return str.split('')
 }
 
-myFunction("Hello World")
+myFunction('Hello World')
+
+// Hello from Monroe
