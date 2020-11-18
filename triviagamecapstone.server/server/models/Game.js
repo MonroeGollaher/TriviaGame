@@ -1,5 +1,6 @@
-function myFunction(str){
-  return str.split('')
+function myFunction(str1){
+  return str1.split('')
+
 }
 
 myFunction("Hello World")
