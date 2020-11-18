@@ -7,10 +7,13 @@
     <h3 class="my-5 bg-dark text-light p-3 rounded d-flex align-items-center">
       <span class="mx-2 text-white">Bar Trivia Management Software</span>
     </h3>
+
+    <GameComponent />
   </div>
 </template>
 
 <script>
+// import GameComponent from '../components/GameComponent.vue'
 export default {
   name: 'Home'
 }
