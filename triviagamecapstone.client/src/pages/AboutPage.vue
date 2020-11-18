@@ -1,11 +1,13 @@
 <template>
   <div class="about">
-    <h1>This is the about page</h1>
+    <NewGame-component />
   </div>
 </template>
 
 <script>
+import NewGameComponent from '../components/NewGameComponent'
 export default {
-  name: 'AboutPage'
+  name: 'AboutPage',
+  components: { NewGameComponent }
 }
 </script>
