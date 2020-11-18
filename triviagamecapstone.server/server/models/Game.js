@@ -1,7 +1,19 @@
-function myFunction(str1) {
-  return str1.split('')
-}
+import mongoose from 'mongoose'
+const Schema = mongoose.Schema
 
-myFunction('Hello World')
+const Game = new Schema(
+  {
+    title: { type: String, required: true },
+    numberOfQuestions: { type: Number, required: true },
+    creatorId: { type: String, ref: 'Profile', required: true }
+  },
+  { timestamps: true, _id: true, toJSON: { virtuals: true } }
+)
 
-// Hello from Monroe
+Game.virtual('creator', {
+  localField: 'creatorId',
+  ref: 'Profile',
+  foreignField: '_id',
+  justOne: true
+})
+export default Game
