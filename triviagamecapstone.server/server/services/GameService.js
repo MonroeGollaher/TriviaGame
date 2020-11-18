@@ -1,12 +1,12 @@
-import dbContext from '../db/DbContext'
+import { dbContext } from '../db/DbContext'
 
 class GameService {
-  getAllGames(userId) {
-    throw new Error('Method not implemented.')
+  async getAllGames(userId) {
+    return await dbContext.Games.find({ creatorId: userId })
   }
 
-  createNewGame(body) {
-    throw new Error('Method not implemented.')
+  async createNewGame(body) {
+    return await dbContext.Games.create(body)
   }
 }
 
