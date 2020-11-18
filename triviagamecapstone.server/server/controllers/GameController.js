@@ -22,7 +22,7 @@ export class GameController extends BaseController {
 
   async getAllGames(req, res, next) {
     try {
-      res.send(await gameService.getAllGames(req.userInfo.id)).populate('creator')
+      res.send(await gameService.getAllGames(req.userInfo)).populate('creator')
     } catch (error) {
       next(error)
     }

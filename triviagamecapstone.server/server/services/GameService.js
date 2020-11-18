@@ -10,8 +10,12 @@ class GameService {
     }
   }
 
-  async getAllGames(userId) {
-    return await dbContext.Games.find({ creatorId: userId })
+  async getAllGames(userInfo) {
+    if (userInfo.role === 'Host') {
+      return await dbContext.Games.find({ creatorId: userInfo._id })
+    } else {
+      throw new BadRequest('Permission Denied!')
+    }
   }
 }
 
