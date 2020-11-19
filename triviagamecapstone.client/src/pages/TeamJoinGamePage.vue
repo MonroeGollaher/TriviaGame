@@ -33,7 +33,7 @@ export default {
     })
     return {
       state,
-      joinGame() {}
+      joinGame() { }
     }
   },
   components: {}

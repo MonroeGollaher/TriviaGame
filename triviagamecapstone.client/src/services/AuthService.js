@@ -23,4 +23,9 @@ AuthService.on(AuthService.AUTH_EVENTS.AUTHENTICATED, async function() {
   await profileService.getProfile()
   AppState.user = AuthService.user
   // NOTE if there is something you want to do once the user is authenticated, place that here
+  if (AuthService.hasRoles('Host')) {
+    router.push({ name: 'AdminHomePage' })
+  } else {
+    router.push({ name: 'TeamJoinGame' })
+  }
 })

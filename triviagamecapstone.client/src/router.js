@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import { authGuard } from '@bcwdev/auth0provider-client'
+import { authGuard, hasRoles, onAuthLoaded } from '@bcwdev/auth0provider-client'
 
 function loadPage(page) {
   return () => import(`./pages/${page}.vue`)
@@ -21,8 +21,32 @@ const routes = [
     name: 'Profile',
     component: loadPage('ProfilePage'),
     beforeEnter: authGuard
+  },
+  {
+    path: '/adminhome',
+    name: 'AdminHomePage',
+    component: loadPage('AdminHomePage'),
+    beforeEnter: hostGuard
+  },
+  {
+    path: '/joingame',
+    name: 'TeamJoinGame',
+    component: loadPage('TeamJoinGamePage'),
+    beforeEnter: authGuard
   }
 ]
+
+async function hostGuard(to, from, next) {
+  try {
+    await onAuthLoaded()
+    if (hasRoles('Host')) {
+      return next()
+    }
+    return next({ name: 'TeamJoinGame' })
+  } catch (e) {
+    return next({ name: 'Home' })
+  }
+}
 
 const router = createRouter({
   linkActiveClass: 'router-link-active',
