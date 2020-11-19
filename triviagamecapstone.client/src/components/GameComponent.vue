@@ -1,18 +1,20 @@
 <template>
   <div class="game-component container-fluid">
-    <div class="row justify-content-between align-items-center border-rounded bg-light shadow my-3">
-      <div class="col-4">
-        <h5 class="mb-0">
-          Game Title
-        </h5>
-      </div>
-      <div class="col-4 d-flex py-2 justify-content-end">
-        <button class="btn btn-success" @click="startGame(game._id)">
-          <i class="far fa-play-circle"></i>
-        </button>
-        <button class="btn btn-danger ml-1" @click="deleteGame(game._id)">
-          <i class="far fa-trash-alt"></i>
-        </button>
+    <div class="col-8">
+      <div class="row justify-content-between align-items-center border-rounded bg-light shadow my-3 radius25">
+        <div class="col-4">
+          <h5 class="mb-0">
+            Game Title
+          </h5>
+        </div>
+        <div class="col-4 d-flex py-2 justify-content-end">
+          <button class="btn btn-success" @click="startGame(game._id)">
+            <i class="far fa-play-circle"></i>
+          </button>
+          <button class="btn btn-danger ml-1" @click="deleteGame(game._id)">
+            <i class="far fa-trash-alt"></i>
+          </button>
+        </div>
       </div>
     </div>
   </div>

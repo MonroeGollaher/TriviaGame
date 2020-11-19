@@ -4,3 +4,11 @@
   border-color: darken($color: $primary, $amount: 10);
   border-width: medium;
 }
+
+// * {
+//   outline: 1px solid red;
+// }
+
+.radius25 {
+  border-radius: 25px;
+}
