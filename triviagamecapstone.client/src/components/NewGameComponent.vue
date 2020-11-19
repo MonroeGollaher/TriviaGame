@@ -1,6 +1,8 @@
 <template>
-  <div class="newGame-component container-fluid card shadow col-4">
-    <h2>New Game</h2>
+  <div class="newGame-component container-fluid card shadow col-3 my-3 radius25">
+    <h2 class="my-1">
+      New Game
+    </h2>
     <form>
       <div class="form-group">
         <label for="exampleInputEmail1">Game Title</label>

@@ -1,13 +1,12 @@
 <template>
-  <div class="about">
-    <NewGame-component />
+  <div class="about container-fluid">
   </div>
 </template>
 
 <script>
-import NewGameComponent from '../components/NewGameComponent'
+
 export default {
   name: 'AboutPage',
-  components: { NewGameComponent }
+  components: { }
 }
 </script>
