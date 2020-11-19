@@ -1,7 +1,15 @@
 <template>
-
   <div class="home container-fluid">
-
+    <div class="row">
+      <div class="col-12 col-lg-6">
+        <h1>Welcome to NameHere</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-lg-6">
+        Video
+      </div>
+    </div>
   </div>
 </template>
 
