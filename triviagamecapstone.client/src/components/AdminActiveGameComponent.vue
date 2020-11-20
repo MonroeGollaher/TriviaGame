@@ -1,5 +1,5 @@
 <template>
-  <div class="adminActiveGamePage container-fluid">
+  <div class="adminActiveGameComponent container-fluid">
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
         <h1 class="display-4">
@@ -38,7 +38,7 @@
 <script>
 import ActiveQuestionAnswerComponent from '../components/ActiveQuestionAnswerComponent'
 export default {
-  name: 'AdminActiveGamePage',
+  name: 'AdminActiveGameComponent',
   components: { ActiveQuestionAnswerComponent },
   setup() {
     return {}

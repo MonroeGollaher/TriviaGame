@@ -34,11 +34,13 @@ const routes = [
     name: 'TeamJoinGame',
     component: loadPage('TeamJoinGamePage'),
     beforeEnter: authGuard
+  },
+  {
+    path: '/activegame/:gameId',
+    name: 'ActiveGame',
+    component: loadPage('ActiveGamePage'),
+    beforeEnter: authGuard
   }
-  // {
-  //   path: '/activegame/:gameId',
-  //   name: ''
-  // }
 ]
 
 async function hostGuard(to, from, next) {

@@ -35,7 +35,7 @@ export default {
     return {
       game: computed(() => props.gameProp),
       startGame(gameId) {
-        router.push({ name: 'ActiveGame', params: { id: gameId } })
+        router.push({ name: 'ActiveGame', params: { gameId: gameId } })
       },
       deleteGame(gameId) {
         gameService.deleteGame(gameId)
