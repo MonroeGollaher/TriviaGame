@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import { authGuard, hasRoles, onAuthLoaded } from '@bcwdev/auth0provider-client'
+import { authGuard, onAuthLoaded } from '@bcwdev/auth0provider-client'
+import { AuthService } from './services/AuthService'
 
 function loadPage(page) {
   return () => import(`./pages/${page}.vue`)
@@ -34,12 +35,17 @@ const routes = [
     component: loadPage('TeamJoinGamePage'),
     beforeEnter: authGuard
   }
+  // {
+  //   path: '/activegame/:gameId',
+  //   name: ''
+  // }
 ]
 
 async function hostGuard(to, from, next) {
   try {
     await onAuthLoaded()
-    if (hasRoles('Host')) {
+
+    if (AuthService.hasRoles('Host')) {
       return next()
     }
     return next({ name: 'TeamJoinGame' })

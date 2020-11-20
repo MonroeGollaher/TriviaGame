@@ -3,14 +3,20 @@
     <h2 class="my-1">
       New Game
     </h2>
-    <form>
+    <form @submit="createGame">
       <div class="form-group">
         <label for="exampleInputEmail1">Game Title</label>
-        <input type="text" class="form-control" id="gameTitle" aria-describedby="gameTitle" placeholder="What do you want to call your game?">
+        <input type="text"
+               class="form-control"
+               id="gameTitle"
+               aria-describedby="gameTitle"
+               placeholder="What do you want to call your game?"
+               v-model="state.newGame.title"
+        >
       </div>
       <div class="form-group">
         <label for="questionsAmount">Number of Questions</label>
-        <input type="number" class="form-control" id="questionsAmount">
+        <input type="number" class="form-control" id="questionsAmount" v-model="state.newGame.numberOfQuestions">
       </div>
       <div class="form-group">
         <label for="questionsAmount">Room Code</label>
@@ -24,12 +30,27 @@
 </template>
 
 <script>
+import { onMounted, reactive } from 'vue'
+import { gameService } from '../services/GameService'
 export default {
   name: 'NewGameComponent',
+  components: {},
   setup() {
-    return {}
-  },
-  components: {}
+    const state = reactive({
+      newGame: {
+
+      }
+    })
+    onMounted(async() => {
+      await gameService.getGames()
+    })
+    return {
+      state,
+      createGame() {
+        gameService.createGame(state.newGame)
+      }
+    }
+  }
 }
 </script>
 
