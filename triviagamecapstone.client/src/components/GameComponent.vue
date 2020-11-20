@@ -4,7 +4,7 @@
       <div class="row justify-content-between align-items-center border-rounded bg-light shadow my-3 radius25">
         <div class="col-4">
           <h5 class="mb-0">
-            Game Title
+            {{ gameProp.title }}
           </h5>
         </div>
         <div class="col-4 d-flex py-2 justify-content-end">
@@ -21,23 +21,25 @@
 </template>
 
 <script>
-// import { computed } from 'vue'
-// import { gameService } from '../services/GameService'
+import { computed } from 'vue'
+import { gameService } from '../services/GameService'
+import { useRouter } from 'vue-router'
 
 export default {
   name: 'GameComponent',
   props: {
     gameProp: Object
   },
-  setup() {
+  setup(props) {
+    const router = useRouter()
     return {
-      // game: computed(() => props.gameProp),
-      // startGame(gameId) {
-      //   router.push({ name: 'ActiveGame', params: { id: gameId } })
-      // },
-      // deleteGame(gameId) {
-      //   gameService.deleteGame(gameId)
-      // }
+      game: computed(() => props.gameProp),
+      startGame(gameId) {
+        router.push({ name: 'ActiveGame', params: { id: gameId } })
+      },
+      deleteGame(gameId) {
+        gameService.deleteGame(gameId)
+      }
     }
   },
   components: {}
