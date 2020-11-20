@@ -19,7 +19,7 @@
     </div>
     <div class="row justify-content-center align-items-center">
       <div class="col-12 col-lg-6">
-        <form @submit="teamAnswer()">
+        <form @submit="teamAnswer()" class="d-flex flex-column">
           <input type="text" v-model="state.question.pointWager" placeholder="Point Wager">
           <input type="text" v-model="state.question.answer" placeholder="Team Answer">
           <button type="submit" class="btn btn-success">
@@ -41,7 +41,7 @@
 <script>
 import { reactive } from 'vue'
 export default {
-  name: 'TeamActiveGame',
+  name: 'TeamActiveGameComponent',
   setup() {
     const state = reactive({
       question: {}

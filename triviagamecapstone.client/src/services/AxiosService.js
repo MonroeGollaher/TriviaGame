@@ -6,6 +6,11 @@ export const api = Axios.create({
   timeout: 8000
 })
 
+export const triviaApi = Axios.create({
+  baseURL: 'https://opentdb.com/',
+  timeout: 8000
+})
+
 export const setBearer = function(bearer) {
   api.defaults.headers.authorization = bearer
 }

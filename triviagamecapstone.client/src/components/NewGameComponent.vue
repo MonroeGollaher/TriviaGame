@@ -22,7 +22,7 @@
         <label for="questionsAmount">Room Code</label>
         <input class="form-control" id="questionsAmount">
       </div>
-      <button type="submit" class="btn btn-primary mb-3">
+      <button type="submit" class="btn btn-primary mb-3" @click="getQuestions(state.newGame.numberOfQuestions)">
         Create game
       </button>
     </form>
@@ -48,6 +48,9 @@ export default {
       state,
       createGame() {
         gameService.createGame(state.newGame)
+      },
+      getQuestions() {
+        gameService.getQuestions(state.newGame.numberOfQuestions)
       }
     }
   }
