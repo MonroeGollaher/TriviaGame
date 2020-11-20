@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { gameService } from '../services/GameService'
 import { useRouter } from 'vue-router'
 
@@ -32,6 +32,10 @@ export default {
   },
   setup(props) {
     const router = useRouter()
+    onMounted(async() => {
+      await gameService.getQuestions(props.gameProp.numberOfQuestions, props.gameProp._id)
+    }
+    )
     return {
       game: computed(() => props.gameProp),
       startGame(gameId) {
