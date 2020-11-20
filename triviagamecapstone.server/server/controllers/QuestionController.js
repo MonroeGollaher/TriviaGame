@@ -13,8 +13,9 @@ export class QuestionController extends BaseController {
 
   async addQuestion(req, res, next) {
     try {
-      const questions = req.body
+      const questions = req.body.results
       questions.forEach(async(q, index) => {
+        q.answer = q.correct_answer
         questions[index].gameId = req.params.gameId
       })
       res.send(await questionService.addQuestion(questions))
