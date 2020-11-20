@@ -8,13 +8,16 @@ export class QuestionController extends BaseController {
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('/:gameId', this.getQuestionsByGameId)
-      .post('/:gameId', this.addQuestion)
+      .post('/question/:gameId', this.addQuestion)
   }
 
   async addQuestion(req, res, next) {
     try {
-      req.body.gameId = req.params.gameId
-      res.send(await questionService.addQuestion(req.body))
+      const questions = req.body
+      questions.forEach(async(q, index) => {
+        questions[index].gameId = req.params.gameId
+      })
+      res.send(await questionService.addQuestion(questions))
     } catch (error) {
       next(error)
     }
