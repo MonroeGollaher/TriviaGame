@@ -4,6 +4,7 @@ import { BadRequest } from '../utils/Errors'
 class GameService {
   async getOneGame(gameId, userInfo) {
     const res = await dbContext.Games.findById(gameId)
+    // @ts-ignore
     if (userInfo.roles[0] === 'Host' && res._doc.creatorId === userInfo.id) {
       return res
     } else {
@@ -28,14 +29,14 @@ class GameService {
     }
   }
 
-  async deleteGame(gameId, userInfo) {
-    const exists = await this.getOneGame(gameId, userInfo)
+  async deleteGame(game, userInfo) {
+    const exists = await this.getOneGame(game, userInfo)
 
     if (!exists) {
       throw new BadRequest('This is not the game you are looking for')
     }
-
-    return await dbContext.Games.findByIdAndDelete(gameId)
+    await dbContext.Questions.deleteMany({ gameId: game })
+    return await dbContext.Games.findByIdAndDelete(game)
   }
 }
 

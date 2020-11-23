@@ -18,7 +18,7 @@ export class QuestionController extends BaseController {
         q.answer = q.correct_answer
         questions[index].gameId = req.params.gameId
       })
-      res.send(await questionService.addQuestion(questions))
+      res.send(await questionService.addQuestion(questions, req.params.gameId))
     } catch (error) {
       next(error)
     }
