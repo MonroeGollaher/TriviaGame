@@ -14,9 +14,19 @@ class GameService {
   async getQuestions(numberOfQuestions, gameId) {
     try {
       const res = await triviaApi.get('/api.php?type=multiple&amount=' + numberOfQuestions)
-      logger.log(res.data)
+      // logger.log(res.data)
       AppState.questions = res.data
       this.addQuestions(gameId, AppState.questions)
+    } catch (error) {
+      logger.error(error)
+    }
+  }
+
+  async getQuestionsByGameId(gameId) {
+    try {
+      const res = await api.get('/api/questions/' + gameId)
+      console.log(res.data)
+      AppState.gameQuestions = res.data
     } catch (error) {
       logger.error(error)
     }
