@@ -23,7 +23,7 @@
     </div>
     <div class="row justify-content-end">
       <div class="col-4 mt-5">
-        <button class="btn btn-danger ml-5">
+        <button @click="endGame" class="btn btn-danger ml-5">
           End game
         </button>
       </div>
@@ -42,18 +42,24 @@ import ActiveQuestionAnswerComponent from '../components/ActiveQuestionAnswerCom
 import ActiveQuestionCompnent from '../components/ActiveQuestionCompnent'
 import { computed, onMounted } from 'vue'
 import { AppState } from '../AppState'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
+
 export default {
   name: 'AdminActiveGameComponent',
   components: { ActiveQuestionAnswerComponent, ActiveQuestionCompnent },
   setup() {
     const route = useRoute()
+    const router = useRouter()
     onMounted(async() => {
-      // await gameService.getActiveQuestion()
       await gameService.getQuestionsByGameId(route.params.gameId)
+      await gameService.showActiveQuestion()
     })
     return {
-      activeQuestion: computed(() => AppState.activeQuestion)
+      activeQuestion: computed(() => AppState.activeQuestion),
+      endGame() {
+        router.push({ name: 'AdminHomePage' })
+        // gameService.endGame()
+      }
     }
   }
 }

@@ -13,7 +13,8 @@
     <div class="row justify-content-center align-items-center">
       <div class="col-12 col-lg-6">
         <h3>
-          CurrentQuestion
+          CurrentQuestion:
+          <active-question-component />
         </h3>
       </div>
     </div>
@@ -39,19 +40,28 @@
 </template>
 
 <script>
-import { reactive } from 'vue'
+import { computed, onMounted, reactive } from 'vue'
+import ActiveQuestionComponent from '../components/ActiveQuestionCompnent'
+import { gameService } from '../services/GameService'
+import { AppState } from '../AppState'
+import { useRoute } from 'vue-router'
 export default {
   name: 'TeamActiveGameComponent',
   setup() {
     const state = reactive({
       question: {}
     })
+    const route = useRoute()
+    onMounted(async() => {
+      await gameService.getQuestionsByGameId(route.params.gameId)
+      await gameService.showActiveQuestion()
+    })
     return {
-      state
-
+      state,
+      activeQuestion: computed(() => AppState.activeQuestion)
     }
   },
-  components: {}
+  components: { ActiveQuestionComponent }
 }
 </script>
 
