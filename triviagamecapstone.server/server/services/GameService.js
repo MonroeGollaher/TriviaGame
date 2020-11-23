@@ -28,14 +28,14 @@ class GameService {
     }
   }
 
-  async deleteGame(gameId, userInfo) {
-    const exists = await this.getOneGame(gameId, userInfo)
+  async deleteGame(game, userInfo) {
+    const exists = await this.getOneGame(game, userInfo)
 
     if (!exists) {
       throw new BadRequest('This is not the game you are looking for')
     }
-
-    return await dbContext.Games.findByIdAndDelete(gameId)
+    await dbContext.Questions.deleteMany({ gameId: game })
+    return await dbContext.Games.findByIdAndDelete(game)
   }
 }
 
