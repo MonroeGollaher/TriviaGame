@@ -4,6 +4,7 @@ import { BadRequest } from '../utils/Errors'
 class GameService {
   async getOneGame(gameId, userInfo) {
     const res = await dbContext.Games.findById(gameId)
+    // @ts-ignore
     if (userInfo.roles[0] === 'Host' && res._doc.creatorId === userInfo.id) {
       return res
     } else {
