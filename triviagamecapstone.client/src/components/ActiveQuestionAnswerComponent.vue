@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="col-10 mb-3">
-      <button class="btn btn-primary text-light">
+      <button @click="nextQuestion" class="btn btn-primary text-light">
         Next Question
       </button>
     </div>
@@ -21,10 +21,15 @@
 </template>
 
 <script>
+import { gameService } from '../services/GameService'
 export default {
   name: 'ActiveQuestionAnswerComponent',
   setup() {
-    return {}
+    return {
+      nextQuestion() {
+        gameService.nextQuestion()
+      }
+    }
   },
   components: {}
 }
