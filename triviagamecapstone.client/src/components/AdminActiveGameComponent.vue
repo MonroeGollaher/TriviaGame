@@ -12,6 +12,7 @@
     </div>
     <div class="row text-center justify-content-around">
       <div class="col-2">
+        <active-question-compnent />
         <Active-question-answer-component />
       </div>
       <div class="col-4 card shadow radius25 text-left">
@@ -36,12 +37,24 @@
 </template>
 
 <script>
+import { gameService } from '../services/GameService'
 import ActiveQuestionAnswerComponent from '../components/ActiveQuestionAnswerComponent'
+import ActiveQuestionCompnent from '../components/ActiveQuestionCompnent'
+import { computed, onMounted } from 'vue'
+import { AppState } from '../AppState'
+import { useRoute } from 'vue-router'
 export default {
   name: 'AdminActiveGameComponent',
-  components: { ActiveQuestionAnswerComponent },
+  components: { ActiveQuestionAnswerComponent, ActiveQuestionCompnent },
   setup() {
-    return {}
+    const route = useRoute()
+    onMounted(async() => {
+      // await gameService.getActiveQuestion()
+      await gameService.getQuestionsByGameId(route.params.gameId)
+    })
+    return {
+      activeQuestion: computed(() => AppState.activeQuestion)
+    }
   }
 }
 </script>

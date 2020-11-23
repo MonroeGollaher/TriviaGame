@@ -1,5 +1,5 @@
 <template>
-  <div class="ActiveGamePage">
+  <div class="ActiveGamePage container-fluid">
     <AdminActiveGameComponent v-if="authService.hasRoles('Host')" />
     <TeamActiveGameComponent v-if="!authService.hasRoles('Host')" />
   </div>
@@ -12,13 +12,13 @@ import { AuthService } from '../services/AuthService'
 
 export default {
   name: 'ActiveGamePage',
+  components: { },
   setup() {
     return {
       user: computed(() => AppState.user),
       authService: computed(() => AuthService)
     }
-  },
-  components: {}
+  }
 }
 </script>
 
