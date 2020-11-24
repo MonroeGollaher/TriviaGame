@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="row justify-content-center align-items-center">
-      <div class="col-12 col-lg-6">
+      <div class="col-12 col-lg-6" v-if="activeQuestion">
         <form @submit.prevent="teamAnswer()" class="d-flex flex-column">
           <input type="text" v-model="state.answer.wager" placeholder="Point Wager">
           <input type="text" v-model="state.answer.answer" placeholder="Team Answer">

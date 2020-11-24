@@ -3,10 +3,10 @@
     <div class="row p-2 mb-2">
       <div class="col-6 d-flex align-items-center">
         <p class="mb-0">
-          TeamName
+          {{ team.name }}
         </p>
         <p class="ml-3 mb-0">
-          TeamPoints
+          {{ team.currentPoints }}
         </p>
       </div>
       <div class="col-6 d-flex justify-content-end align-items-center">
@@ -19,17 +19,16 @@
 </template>
 
 <script>
-import { onMounted } from 'vue'
-import { gameService } from '../services/GameService'
-import { useRoute } from 'vue-router'
+import { computed } from 'vue'
 export default {
   name: 'GameLeaderBoard',
-  setup() {
-    const route = useRoute()
-    onMounted(async() => {
-      await gameService.getGameTeams(route.params.gameId)
-    })
-    return {}
+  props: {
+    teamProp: Object
+  },
+  setup(props) {
+    return {
+      team: computed(() => props.teamProp)
+    }
   },
   components: {}
 }
