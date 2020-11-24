@@ -11,7 +11,7 @@ export class GameController extends BaseController {
       .get('', this.getAllGames)
       .get('/:gameId', this.getOneGame)
       .post('', this.createNewGame)
-      .put('/:gameId', this.updateScoresAndEndGame)
+      .put('/:gameId/endgame', this.updateScoresAndEndGame)
       .delete('/:gameId', this.deleteGame)
   }
 
