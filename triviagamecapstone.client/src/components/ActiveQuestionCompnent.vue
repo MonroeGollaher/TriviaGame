@@ -18,7 +18,7 @@
 
 <script>
 import { computed, onMounted } from 'vue'
-import { gameService } from '../services/GameService'
+import { questionService } from '../services/questionService'
 import { AppState } from '../AppState'
 import { AuthService } from '../services/AuthService'
 
@@ -26,13 +26,13 @@ export default {
   name: 'ActiveQuestionComponent',
   setup(props) {
     onMounted(async() => {
-      await gameService.showActiveQuestion()
+      await questionService.showActiveQuestion()
     })
     return {
       activeQuestion: computed(() => AppState.activeQuestion),
       authService: computed(() => AuthService),
       nextQuestion() {
-        gameService.nextQuestion()
+        questionService.nextQuestion()
       }
     }
   },

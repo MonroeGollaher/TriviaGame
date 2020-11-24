@@ -44,7 +44,8 @@
 </template>
 
 <script>
-import { gameService } from '../services/GameService'
+import { questionService } from '../services/questionService'
+import { answerService } from '../services/AnswerService'
 import ActiveQuestionCompnent from '../components/ActiveQuestionCompnent'
 import TeamAnswersComponent from '../components/TeamAnswersComponent'
 import { computed, onMounted } from 'vue'
@@ -58,9 +59,9 @@ export default {
     const route = useRoute()
     const router = useRouter()
     onMounted(async() => {
-      await gameService.getQuestionsByGameId(route.params.gameId)
-      await gameService.showActiveQuestion()
-      await gameService.getResponses()
+      await questionService.getQuestionsByGameId(route.params.gameId)
+      await questionService.showActiveQuestion()
+      await answerService.getResponses()
     })
     return {
       activeQuestion: computed(() => AppState.activeQuestion),
