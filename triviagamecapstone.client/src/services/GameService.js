@@ -4,6 +4,17 @@ import { AppState } from '../AppState'
 import { useRouter } from 'vue-router'
 
 class GameService {
+  async toggleApproval(answersId) {
+    try {
+      const currentAnswer = AppState.teamAnswers.find(a => a._id === answersId)
+      currentAnswer.approved = true
+      logger.log(currentAnswer)
+      await api.put('/api/responses/' + answersId, currentAnswer)
+    } catch (error) {
+      logger.error(error)
+    }
+  }
+
   async addQuestions(gameId, body) {
     try {
       await api.post('/api/questions/question/' + gameId, body)
@@ -62,9 +73,8 @@ class GameService {
     try {
       // @ts-ignore
       const questionId = AppState.activeQuestion._id
-      debugger
       const res = await api.get('/api/responses/' + questionId)
-      console.log(res.data)
+      // console.log(res.data)
       AppState.teamAnswers = res.data
     } catch (error) {
       logger.error(error)

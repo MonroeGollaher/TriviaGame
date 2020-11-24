@@ -1,12 +1,17 @@
 <template>
-  <div class="activeQuestion-component container-fluid radius25 card shadow justify-content-center">
+  <div class="activeQuestion-component container-fluid radius25 card shadow justify-content-center p-2">
+    <h3>Question:</h3>
     <p v-if="activeQuestion">
       {{ activeQuestion.question }}
     </p>
     <div v-if="authService.hasRoles('Host')">
+      <h3>Answer:</h3>
       <p v-if="activeQuestion">
         {{ activeQuestion.answer }}
       </p>
+      <button @click="nextQuestion" class="btn btn-primary text-light">
+        Next Question
+      </button>
     </div>
   </div>
 </template>
@@ -25,7 +30,10 @@ export default {
     })
     return {
       activeQuestion: computed(() => AppState.activeQuestion),
-      authService: computed(() => AuthService)
+      authService: computed(() => AuthService),
+      nextQuestion() {
+        gameService.nextQuestion()
+      }
     }
   },
   components: {}
