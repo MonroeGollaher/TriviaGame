@@ -4,11 +4,21 @@ import { AppState } from '../AppState'
 import { useRouter } from 'vue-router'
 
 class GameService {
+  async getGameTeams(gameId) {
+    try {
+      const res = await api.get('/api/profiles')
+      const currentTeams = res.find(t => t.currentGame === gameId)
+      AppState.gameTeams.push(currentTeams)
+    } catch (error) {
+      logger.error(error)
+    }
+  }
+
   async toggleApproval(answersId) {
     try {
       const currentAnswer = AppState.teamAnswers.find(a => a._id === answersId)
       currentAnswer.approved = true
-      logger.log(currentAnswer)
+      // logger.log(currentAnswer)
       await api.put('/api/responses/' + answersId, currentAnswer)
     } catch (error) {
       logger.error(error)
