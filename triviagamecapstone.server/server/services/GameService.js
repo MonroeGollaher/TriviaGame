@@ -2,6 +2,18 @@ import { dbContext } from '../db/DbContext'
 import { BadRequest } from '../utils/Errors'
 
 class GameService {
+  async getAllTeamsByGameId(userInfo, id) {
+    if (userInfo.roles[0] === 'Host') {
+      return await dbContext.Profile.find({ currentGame: id })
+    } else {
+      throw new BadRequest('These are not the users you are looking for')
+    }
+  }
+
+  async joinGame(userInfo, id) {
+    return await dbContext.Profile.findByIdAndUpdate(userInfo.id, { currentGame: id })
+  }
+
   async getOneGame(gameId, userInfo) {
     const res = await dbContext.Games.findById(gameId)
     // @ts-ignore
