@@ -17,6 +17,7 @@ class ResponseService {
 
   async updatePoints(profileId, wager, approvedValue) {
     const profile = await dbContext.Profile.findById(profileId)
+    // @ts-ignore
     let currentValue = profile._doc.currentPoints
     if (approvedValue === true) {
       currentValue += wager
