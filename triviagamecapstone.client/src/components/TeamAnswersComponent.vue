@@ -11,7 +11,7 @@
 
 <script>
 import { computed } from 'vue'
-import { gameService } from '../services/GameService'
+import { answerService } from '../services/AnswerService'
 export default {
   name: 'TeamAnswersComponent',
   components: {},
@@ -22,7 +22,7 @@ export default {
     return {
       answers: computed(() => props.answersProp),
       toggleApproval(answersId) {
-        gameService.toggleApproval(answersId)
+        answerService.toggleApproval(answersId)
       }
     }
   }

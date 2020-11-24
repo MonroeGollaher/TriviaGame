@@ -11,6 +11,7 @@
       <div class="col-12 col-lg-6">
         <p>
           Room Code
+          <!-- NOTE  need to add game id to profile under currentGame -->
         </p>
         <form @submit="joinGame()">
           <input type="text" v-model="state.activeGame.roomNumber">

@@ -10,11 +10,11 @@
         </p>
       </div>
     </div>
-    <div class="row text-center justify-content-around">
-      <div class="col-4">
+    <div class="row text-center justify-content-around p-2">
+      <div class="col-5">
         <active-question-compnent />
       </div>
-      <div class="col-4 card shadow radius25 text-left">
+      <div class="col-5 card shadow radius25 text-left p-2">
         <h3 class="my-2">
           Team Answers
         </h3>
@@ -28,8 +28,8 @@
       </div>
     </div>
     <div class="row justify-content-end">
-      <div class="col-4 mt-5">
-        <button @click="endGame" class="btn btn-danger ml-5">
+      <div class="col-4 mt-5 d-flex justify-content-end mr-4">
+        <button @click="endGame" class="btn btn-danger ml-5 mr-3">
           End game
         </button>
       </div>
@@ -37,13 +37,15 @@
     <div class="row mt-5 justify-content-center">
       <div class="col-10 card shadow radius25">
         <h3>Team Standings:</h3>
+        <GameLeaderBoard v-for="team in gameTeams" :key="team._id" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { gameService } from '../services/GameService'
+import { questionService } from '../services/questionService'
+import { answerService } from '../services/AnswerService'
 import ActiveQuestionCompnent from '../components/ActiveQuestionCompnent'
 import TeamAnswersComponent from '../components/TeamAnswersComponent'
 import { computed, onMounted } from 'vue'
@@ -57,9 +59,9 @@ export default {
     const route = useRoute()
     const router = useRouter()
     onMounted(async() => {
-      await gameService.getQuestionsByGameId(route.params.gameId)
-      await gameService.showActiveQuestion()
-      await gameService.getResponses()
+      await questionService.getQuestionsByGameId(route.params.gameId)
+      await questionService.showActiveQuestion()
+      await answerService.getResponses()
     })
     return {
       activeQuestion: computed(() => AppState.activeQuestion),

@@ -42,10 +42,11 @@
 <script>
 import { computed, onMounted, reactive } from 'vue'
 import ActiveQuestionComponent from '../components/ActiveQuestionCompnent'
-import { gameService } from '../services/GameService'
 import { AppState } from '../AppState'
 import { useRoute } from 'vue-router'
 import { logger } from '../utils/Logger'
+import { questionService } from '../services/questionService'
+import { answerService } from '../services/AnswerService'
 export default {
   name: 'TeamActiveGameComponent',
   setup() {
@@ -56,15 +57,15 @@ export default {
     })
     const route = useRoute()
     onMounted(async() => {
-      await gameService.getQuestionsByGameId(route.params.gameId)
-      await gameService.showActiveQuestion()
+      await questionService.getQuestionsByGameId(route.params.gameId)
+      await questionService.showActiveQuestion()
     })
     return {
       state,
       activeQuestion: computed(() => AppState.activeQuestion),
       teamAnswer() {
         logger.log(state.answer)
-        gameService.submitAnswer(state.answer)
+        answerService.submitAnswer(state.answer)
       }
     }
   },
