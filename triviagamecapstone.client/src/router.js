@@ -37,7 +37,7 @@ const routes = [
   },
   {
     path: '/activegame/:gameId',
-    name: 'ActiveGame',
+    name: 'ActiveGamePage',
     component: loadPage('ActiveGamePage'),
     beforeEnter: authGuard
   }

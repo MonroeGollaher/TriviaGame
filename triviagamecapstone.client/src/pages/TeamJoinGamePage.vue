@@ -14,7 +14,7 @@
           <!-- NOTE  need to add game id to profile under currentGame -->
         </p>
         <form @submit="joinGame()">
-          <input type="text" v-model="state.activeGame.roomNumber">
+          <input type="text" v-model="state.profile.gameId">
           <button type="submit" class="btn btn-success">
             Join
           </button>
@@ -26,15 +26,22 @@
 
 <script>
 import { reactive } from 'vue'
+import { gameService } from '../services/GameService'
+import { useRouter } from 'vue-router'
+
 export default {
   name: 'TeamJoinGame',
   setup() {
     const state = reactive({
-      activeGame: {}
+      profile: {}
     })
+    const router = useRouter()
     return {
       state,
-      joinGame() { }
+      joinGame() {
+        gameService.joinGame(state.profile)
+        router.push({ name: 'ActiveGamePage', params: { gameId: state.profile.gameId } })
+      }
     }
   },
   components: {}

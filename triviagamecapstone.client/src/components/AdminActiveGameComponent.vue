@@ -37,7 +37,7 @@
     <div class="row mt-5 justify-content-center">
       <div class="col-10 card shadow radius25">
         <h3>Team Standings:</h3>
-        <GameLeaderBoard v-for="team in gameTeams" :key="team._id" />
+        <GameLeaderBoard v-for="t in teams" :key="t" :team-prop="t" />
       </div>
     </div>
   </div>
@@ -51,6 +51,7 @@ import TeamAnswersComponent from '../components/TeamAnswersComponent'
 import { computed, onMounted } from 'vue'
 import { AppState } from '../AppState'
 import { useRoute, useRouter } from 'vue-router'
+import { gameService } from '../services/GameService'
 
 export default {
   name: 'AdminActiveGameComponent',
@@ -62,10 +63,12 @@ export default {
       await questionService.getQuestionsByGameId(route.params.gameId)
       await questionService.showActiveQuestion()
       await answerService.getResponses()
+      await gameService.getGameTeams(route.params.gameId)
     })
     return {
       activeQuestion: computed(() => AppState.activeQuestion),
       answers: computed(() => AppState.teamAnswers),
+      teams: computed(() => AppState.gameTeams),
       endGame() {
         router.push({ name: 'AdminHomePage' })
         // gameService.endGame()
