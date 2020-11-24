@@ -19,6 +19,7 @@
         <h3 class="my-2">
           Team Answers
         </h3>
+        <team-answers-component />
       </div>
     </div>
     <div class="row justify-content-end">
@@ -40,19 +41,21 @@
 import { gameService } from '../services/GameService'
 import ActiveQuestionAnswerComponent from '../components/ActiveQuestionAnswerComponent'
 import ActiveQuestionCompnent from '../components/ActiveQuestionCompnent'
+import TeamAnswersComponent from '../components/TeamAnswersComponent'
 import { computed, onMounted } from 'vue'
 import { AppState } from '../AppState'
 import { useRoute, useRouter } from 'vue-router'
 
 export default {
   name: 'AdminActiveGameComponent',
-  components: { ActiveQuestionAnswerComponent, ActiveQuestionCompnent },
+  components: { ActiveQuestionAnswerComponent, ActiveQuestionCompnent, TeamAnswersComponent },
   setup() {
     const route = useRoute()
     const router = useRouter()
     onMounted(async() => {
       await gameService.getQuestionsByGameId(route.params.gameId)
       await gameService.showActiveQuestion()
+      await gameService.getResponses()
     })
     return {
       activeQuestion: computed(() => AppState.activeQuestion),
@@ -60,6 +63,9 @@ export default {
         router.push({ name: 'AdminHomePage' })
         // gameService.endGame()
       }
+      // getResponses() {
+      //   gameService.getResponses()
+      // }
     }
   }
 }

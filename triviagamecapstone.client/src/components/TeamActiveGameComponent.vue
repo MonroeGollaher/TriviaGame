@@ -20,9 +20,9 @@
     </div>
     <div class="row justify-content-center align-items-center">
       <div class="col-12 col-lg-6">
-        <form @submit="teamAnswer()" class="d-flex flex-column">
-          <input type="text" v-model="state.question.pointWager" placeholder="Point Wager">
-          <input type="text" v-model="state.question.answer" placeholder="Team Answer">
+        <form @submit.prevent="teamAnswer()" class="d-flex flex-column">
+          <input type="text" v-model="state.answer.wager" placeholder="Point Wager">
+          <input type="text" v-model="state.answer.answer" placeholder="Team Answer">
           <button type="submit" class="btn btn-success">
             Submit Answer
           </button>
@@ -45,11 +45,14 @@ import ActiveQuestionComponent from '../components/ActiveQuestionCompnent'
 import { gameService } from '../services/GameService'
 import { AppState } from '../AppState'
 import { useRoute } from 'vue-router'
+import { logger } from '../utils/Logger'
 export default {
   name: 'TeamActiveGameComponent',
   setup() {
     const state = reactive({
-      question: {}
+      answer: {
+        questionId: AppState.activeQuestion._id
+      }
     })
     const route = useRoute()
     onMounted(async() => {
@@ -58,7 +61,11 @@ export default {
     })
     return {
       state,
-      activeQuestion: computed(() => AppState.activeQuestion)
+      activeQuestion: computed(() => AppState.activeQuestion),
+      teamAnswer() {
+        logger.log(state.answer)
+        gameService.submitAnswer(state.answer)
+      }
     }
   },
   components: { ActiveQuestionComponent }

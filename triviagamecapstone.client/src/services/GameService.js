@@ -15,7 +15,7 @@ class GameService {
   showActiveQuestion() {
     try {
       AppState.activeQuestion = AppState.gameQuestions[0]
-      logger.log(AppState.activeQuestion)
+      // logger.log(AppState.activeQuestion)
     } catch (error) {
       logger.error(error)
     }
@@ -24,6 +24,7 @@ class GameService {
   nextQuestion() {
     try {
       const router = useRouter()
+      // @ts-ignore
       let nextQuestion = AppState.gameQuestions.findIndex(q => q._id === AppState.activeQuestion._id)
       nextQuestion++
       if (nextQuestion > AppState.gameQuestions.length) {
@@ -52,6 +53,28 @@ class GameService {
       const res = await api.get('/api/questions/' + gameId)
       // console.log(res.data)
       AppState.gameQuestions = res.data
+    } catch (error) {
+      logger.error(error)
+    }
+  }
+
+  async getResponses() {
+    try {
+      // @ts-ignore
+      const questionId = AppState.activeQuestion._id
+      debugger
+      const res = await api.get('/api/responses/' + questionId)
+      console.log(res.data)
+      AppState.teamAnswers = res.data
+    } catch (error) {
+      logger.error(error)
+    }
+  }
+
+  async submitAnswer(answerData) {
+    try {
+      const res = await api.post('/api/responses/response/' + answerData.questionId, answerData)
+      AppState.teamAnswers = res.data
     } catch (error) {
       logger.error(error)
     }
