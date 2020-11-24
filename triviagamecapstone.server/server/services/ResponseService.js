@@ -8,15 +8,17 @@ class ResponseService {
     const wager = response._doc.wager
     if (userInfo.roles[0] === 'Host') {
       const res = await dbContext.Responses.findByIdAndUpdate(responseId, body, { new: true })
-      this.updatePoints(userInfo.id, wager, body.approved)
+      this.updatePoints(response._doc.teamId, wager, body.approved)
       return res
     } else {
       throw new BadRequest('Permission denied')
     }
   }
 
+  // Cascading function from toggleApproval
   async updatePoints(profileId, wager, approvedValue) {
     const profile = await dbContext.Profile.findById(profileId)
+    // @ts-ignore
     let currentValue = profile._doc.currentPoints
     if (approvedValue === true) {
       currentValue += wager
@@ -25,6 +27,7 @@ class ResponseService {
       }
       await dbContext.Profile.findByIdAndUpdate(profileId, reqBodyInc)
     } else if (approvedValue === false) {
+      // NOTE We will need to refactor this and how it works
       currentValue -= wager
       const reqBodyDec = {
         currentPoints: currentValue

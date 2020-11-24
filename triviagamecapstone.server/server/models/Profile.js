@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 const Schema = mongoose.Schema
+const ObjectId = Schema.Types.ObjectId
 
 const Profile = new Schema(
   {
@@ -8,6 +9,7 @@ const Profile = new Schema(
     email: { type: String, lowercase: true, unique: true },
     name: { type: String, required: true },
     picture: { type: String },
+    currentGame: { type: ObjectId, ref: 'Game' },
     currentPoints: { type: Number, default: 0 },
     gameScores: [{ type: Number }]
   },
