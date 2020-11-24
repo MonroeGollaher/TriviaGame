@@ -11,15 +11,20 @@
       </div>
     </div>
     <div class="row text-center justify-content-around">
-      <div class="col-2">
+      <div class="col-4">
         <active-question-compnent />
-        <Active-question-answer-component />
       </div>
       <div class="col-4 card shadow radius25 text-left">
         <h3 class="my-2">
           Team Answers
         </h3>
-        <team-answers-component />
+        <div class="row">
+          <div class="col-12 d-flex justify-content-between border-bottom mb-2">
+            <p>Answer</p>
+            <p>Approve</p>
+          </div>
+        </div>
+        <team-answers-component v-for="answer in answers" :answers-prop="answer" :key="answer._id" />
       </div>
     </div>
     <div class="row justify-content-end">
@@ -39,7 +44,6 @@
 
 <script>
 import { gameService } from '../services/GameService'
-import ActiveQuestionAnswerComponent from '../components/ActiveQuestionAnswerComponent'
 import ActiveQuestionCompnent from '../components/ActiveQuestionCompnent'
 import TeamAnswersComponent from '../components/TeamAnswersComponent'
 import { computed, onMounted } from 'vue'
@@ -48,7 +52,7 @@ import { useRoute, useRouter } from 'vue-router'
 
 export default {
   name: 'AdminActiveGameComponent',
-  components: { ActiveQuestionAnswerComponent, ActiveQuestionCompnent, TeamAnswersComponent },
+  components: { ActiveQuestionCompnent, TeamAnswersComponent },
   setup() {
     const route = useRoute()
     const router = useRouter()
@@ -59,6 +63,7 @@ export default {
     })
     return {
       activeQuestion: computed(() => AppState.activeQuestion),
+      answers: computed(() => AppState.teamAnswers),
       endGame() {
         router.push({ name: 'AdminHomePage' })
         // gameService.endGame()
