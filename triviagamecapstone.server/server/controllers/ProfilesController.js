@@ -14,6 +14,7 @@ export class ProfilesController extends BaseController {
       .put('/joingame/:gameId', this.joinGame)
   }
 
+  // NOTE this function gets all the teams associated with a gamesId, this allows the host to see all of the teams for ranking.
   async getAllTeamsByGameId(req, res, next) {
     try {
       res.send(await gameService.getAllTeamsByGameId(req.userInfo, req.params.gameId))
@@ -22,6 +23,7 @@ export class ProfilesController extends BaseController {
     }
   }
 
+  // NOTE this function allows teams to join a game, this will be built out more with sockets to give the teams live updates when joining a room/game
   async joinGame(req, res, next) {
     try {
       res.send(await gameService.joinGame(req.userInfo, req.params.gameId))
@@ -38,6 +40,7 @@ export class ProfilesController extends BaseController {
   //   }
   // }
 
+  // NOTE prebuilt function using Auth0 to set profile to the profile info that comes in off of Auth0
   async getUserProfile(req, res, next) {
     try {
       const profile = await profilesService.getProfile(req.userInfo)

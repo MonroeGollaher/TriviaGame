@@ -11,8 +11,9 @@ const Response = new Schema(
     answer: { type: String, required: true }
   },
   { timestamps: true, _id: true, toJSON: { virtuals: true } }
-
 )
+
+// NOTE virtual for creator property, allows FE to populate the profile properties(name, email, currentpoints)
 Response.virtual('creator', {
   localField: 'teamId',
   ref: 'Profile',

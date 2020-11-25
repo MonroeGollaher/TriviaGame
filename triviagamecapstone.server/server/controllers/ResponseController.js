@@ -12,6 +12,7 @@ export class ResponseController extends BaseController {
       .put('/:responseId', this.toggleApproval)
   }
 
+  // NOTE this function allows the host to change the approval of accepting question answers from the team's responses
   async toggleApproval(req, res, next) {
     try {
       res.send(await responseService.toggleApproval(req.body, req.params.responseId, req.userInfo))
@@ -20,6 +21,7 @@ export class ResponseController extends BaseController {
     }
   }
 
+  // NOTE this function allows teams to create a response for a question given by the host. The teamId and questionId are associated with this
   async addResponse(req, res, next) {
     try {
       req.body.questionId = req.params.questionId
@@ -30,6 +32,7 @@ export class ResponseController extends BaseController {
     }
   }
 
+  // NOTE this function gives the host the team's responses that are associated with the current question the game is on
   async getResponsesByQuestionId(req, res, next) {
     try {
       res.send(await responseService.getResponsesByQuestionId(req.params.questionId))
