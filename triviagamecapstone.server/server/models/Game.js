@@ -10,6 +10,7 @@ const Game = new Schema(
   { timestamps: true, _id: true, toJSON: { virtuals: true } }
 )
 
+// NOTE virtual for creator property of host, allows FE to populate the profile properties(name, email, currentpoints)
 Game.virtual('creator', {
   localField: 'creatorId',
   ref: 'Profile',

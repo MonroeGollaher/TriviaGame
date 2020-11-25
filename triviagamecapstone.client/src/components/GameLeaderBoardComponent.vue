@@ -1,3 +1,4 @@
+<!-- //NOTE - This component displays the team's name, current score, and allows the host to disqualify a team if necessary -->
 <template>
   <div class="GameLeaderBoard container-fluid">
     <div class="row p-2 mb-2">

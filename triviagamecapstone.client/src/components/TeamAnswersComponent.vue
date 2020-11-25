@@ -1,3 +1,5 @@
+<!-- //NOTE - This component collects the team's answers to the current question and allows the host to award points to correct answers -->
+
 <template>
   <div class="teamAnswers-component container-fluid">
     <div class="row">

@@ -1,3 +1,4 @@
+<!-- //NOTE - This is a form that allows a host to create a new game and determine the number of questions to get from the api -->
 <template>
   <div class="newGame-component container-fluid card shadow col-3 my-3 radius25">
     <h2 class="my-1">

@@ -1,3 +1,4 @@
+<!-- //NOTE - This profile view allows a team to see their name, members, and their standing in the league -->
 <template>
   <div class="TeamProfile container-fluid">
     <div class="row justify-content-center">
@@ -10,7 +11,7 @@
     </div>
     <div class="row justify-content-center">
       <div class="col-12 col-lg-6">
-        <!-- NOTE - League Leaderboard component -->
+        <!-- TODO - League Leaderboard component -->
       </div>
     </div>
     <div class="row justify-content-center">

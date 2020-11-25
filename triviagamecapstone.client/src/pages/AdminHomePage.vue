@@ -1,3 +1,4 @@
+<!-- //NOTE - This page displays the form for the host to create a new game and the games that the host has already created -->
 <template>
   <div class="adminHomePage container-fluid">
     <div class="jumbotron jumbotron-fluid">

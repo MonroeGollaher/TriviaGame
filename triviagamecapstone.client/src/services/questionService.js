@@ -5,6 +5,7 @@ import { useRouter } from 'vue-router'
 
 class QuestionService {
   async addQuestions(gameId, body) {
+    // NOTE - Sends questions to our API to be attached to a game
     try {
       await api.post('/api/questions/question/' + gameId, body)
     } catch (error) {
@@ -13,6 +14,7 @@ class QuestionService {
   }
 
   showActiveQuestion() {
+    // NOTE - Shows the current question
     try {
       AppState.activeQuestion = AppState.gameQuestions[0]
       // logger.log(AppState.activeQuestion)
@@ -22,6 +24,7 @@ class QuestionService {
   }
 
   nextQuestion() {
+    // NOTE - cycles through the questions attached to the current game
     try {
       const router = useRouter()
       // @ts-ignore
@@ -38,6 +41,7 @@ class QuestionService {
   }
 
   async getQuestions(numberOfQuestions, gameId) {
+    // NOTE - fetches questions from the trivia api
     try {
       const res = await triviaApi.get('/api.php?type=multiple&amount=' + numberOfQuestions)
       // logger.log(res.data)
@@ -49,6 +53,7 @@ class QuestionService {
   }
 
   async getQuestionsByGameId(gameId) {
+    // NOTE - This gets the questions attached to the active game
     try {
       const res = await api.get('/api/questions/' + gameId)
       // console.log(res.data)

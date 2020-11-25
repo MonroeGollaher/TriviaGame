@@ -1,3 +1,5 @@
+// NOTE references mongoDB collections for schemas when integrating new data from outside sources
+
 import mongoose from 'mongoose'
 import ValueSchema from '../models/Value'
 import ProfileSchema from '../models/Profile'

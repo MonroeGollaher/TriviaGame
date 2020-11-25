@@ -4,6 +4,7 @@ import { AppState } from '../AppState'
 
 class GameService {
   async joinGame(profile) {
+    // NOTE - attaches team to an active game
     try {
       console.log(profile)
       await api.put('/profile/joingame/' + profile.gameId, profile)
@@ -13,6 +14,7 @@ class GameService {
   }
 
   async getGameTeams(gameId) {
+    // NOTE - Fetches teams attached to current game
     try {
       const res = await api.get('/profile/' + gameId)
       console.log(res.data)
@@ -24,6 +26,7 @@ class GameService {
   }
 
   async deleteGame(gameId) {
+    // NOTE - Allows the host to delete a game that they've created
     try {
       await api.delete('/api/games/' + gameId)
       this.getGames()
@@ -33,6 +36,7 @@ class GameService {
   }
 
   async createGame(gameData) {
+    // NOTE - allows host to create a new game using the form
     try {
       await api.post('/api/games', gameData)
       this.getGames()
@@ -42,6 +46,7 @@ class GameService {
   }
 
   async getGames() {
+    // NOTE - fetches the games created by the logged in host
     try {
       const res = await api.get('/api/games')
       AppState.games = res.data
