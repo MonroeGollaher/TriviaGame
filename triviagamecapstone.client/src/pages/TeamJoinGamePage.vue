@@ -1,3 +1,4 @@
+<!-- //NOTE - This page is displayed after a team has logged in and allows the team to input a room code and join the active game -->
 <template>
   <div class="TeamJoinGame container-fluid align-items-center">
     <div class="row justify-content-center align-items-center">
@@ -11,7 +12,7 @@
       <div class="col-12 col-lg-6">
         <p>
           Room Code
-          <!-- NOTE  need to add game id to profile under currentGame -->
+          <!-- TODO  need to add game id to profile under currentGame -->
         </p>
         <form @submit="joinGame()">
           <input type="text" v-model="state.profile.gameId">

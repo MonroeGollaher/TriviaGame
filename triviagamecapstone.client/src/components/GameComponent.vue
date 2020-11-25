@@ -1,3 +1,4 @@
+<!-- //NOTE - This component that displays the title of a game that the host has created and allows them to launch the game or delete it -->
 <template>
   <div class="game-component container-fluid">
     <div class="col-8">

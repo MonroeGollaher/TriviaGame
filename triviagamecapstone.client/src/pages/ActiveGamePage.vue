@@ -1,6 +1,9 @@
+<!-- //NOTE - This page holds the current game and displays the host or team view depending on who is logged in to the app -->
 <template>
   <div class="ActiveGamePage container-fluid">
+    <!-- //NOTE - This component is the view that is displayed to the host -->
     <AdminActiveGameComponent v-if="authService.hasRoles('Host')" />
+    <!-- //NOTE - This component is the view that is displayed to the teams -->
     <TeamActiveGameComponent v-if="!authService.hasRoles('Host')" />
   </div>
 </template>

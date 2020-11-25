@@ -1,3 +1,4 @@
+<!-- //NOTE - This is the view that each team sees when playing the game. It displays their current points, the round number, the current question, and a form to allow the team to wager points and answer a question. -->
 <template>
   <div class="TeamActiveGame container-fluid">
     <div class="row justify-content-center align-items-center">
@@ -14,6 +15,7 @@
       <div class="col-12 col-lg-6">
         <h3>
           CurrentQuestion:
+          <!-- //NOTE - This component displays the current question for the team -->
           <active-question-component />
         </h3>
       </div>

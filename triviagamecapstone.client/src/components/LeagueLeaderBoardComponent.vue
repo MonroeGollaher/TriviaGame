@@ -1,3 +1,4 @@
+<!-- //NOTE - This component will display the team name, and average points per game that they have played in and compare them to all the other teams in the league -->
 <template>
   <div class="LeagueLeaderBoard container-fluid">
     <div class="row justify-content-center align-items-center">

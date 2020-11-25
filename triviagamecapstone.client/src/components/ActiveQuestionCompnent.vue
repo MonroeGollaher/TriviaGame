@@ -1,3 +1,4 @@
+<!--// NOTE - This component displays the current question to the host and teams, and displays the answer and next question option to the host -->
 <template>
   <div class="activeQuestion-component container-fluid radius25 card shadow justify-content-center p-2">
     <h3>Question:</h3>

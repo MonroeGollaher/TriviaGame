@@ -1,3 +1,4 @@
+<!-- //NOTE - This is the game board that the host sees. It displays the question/answer, the team's responses, and the leaderboard for the current game -->
 <template>
   <div class="adminActiveGameComponent container-fluid">
     <div class="jumbotron jumbotron-fluid">
@@ -12,6 +13,7 @@
     </div>
     <div class="row text-center justify-content-around p-2">
       <div class="col-5">
+        <!-- //NOTE - Displays current question, the correct answer, and the button to move to the next question -->
         <active-question-compnent />
       </div>
       <div class="col-5 card shadow radius25 text-left p-2">
@@ -24,6 +26,7 @@
             <p>Approve</p>
           </div>
         </div>
+        <!-- //NOTE - This displays each team's answer to the current question and allows the admin to approve each response to award points -->
         <team-answers-component v-for="answer in answers" :answers-prop="answer" :key="answer._id" />
       </div>
     </div>
@@ -37,6 +40,7 @@
     <div class="row mt-5 justify-content-center">
       <div class="col-10 card shadow radius25">
         <h3>Team Standings:</h3>
+        <!-- //NOTE - live updates of the current points each team has earned so far during the game -->
         <GameLeaderBoard v-for="t in teams" :key="t" :team-prop="t" />
       </div>
     </div>
