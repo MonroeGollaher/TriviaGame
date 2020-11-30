@@ -1,6 +1,7 @@
 import { api } from './AxiosService'
 import { logger } from '../utils/Logger'
 import { AppState } from '../AppState'
+import { notificationService } from '../services/NotificationService'
 
 class GameService {
   async joinGame(profile) {
@@ -28,7 +29,9 @@ class GameService {
   async deleteGame(gameId) {
     // NOTE - Allows the host to delete a game that they've created
     try {
-      await api.delete('/api/games/' + gameId)
+      if (await notificationService.deleteNotification()) {
+        await api.delete('/api/games/' + gameId)
+      }
       this.getGames()
     } catch (error) {
       logger.error(error)
@@ -64,5 +67,4 @@ class GameService {
     }
   }
 }
-
 export const gameService = new GameService()
