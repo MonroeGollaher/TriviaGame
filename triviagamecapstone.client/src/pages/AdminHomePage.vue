@@ -4,13 +4,17 @@
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
         <h1 class="display-4 text-center">
-          Welcome, host name!
+          Welcome, {{ profile.name }}!
         </h1>
       </div>
     </div>
-    <div class="row">
-      <NewGame-component />
-      <game-component v-for="g in games" :key="g" :game-prop="g" />
+    <div class="row justify-content-center">
+      <div class="col-4">
+        <NewGame-component />
+      </div>
+      <div class="col-4 offset-1">
+        <game-component v-for="g in games" :key="g" :game-prop="g" />
+      </div>
     </div>
   </div>
 </template>
@@ -21,15 +25,18 @@ import GameComponent from '../components/GameComponent'
 import { computed, onMounted } from 'vue'
 import { gameService } from '../services/GameService'
 import { AppState } from '../AppState'
+import { profileService } from '../services/ProfileService'
 export default {
   name: 'AdminHomePage',
   components: { NewGameComponent, GameComponent },
   setup() {
     onMounted(async() => {
       await gameService.getGames()
+      await profileService.getProfile()
     })
     return {
-      games: computed(() => AppState.games)
+      games: computed(() => AppState.games),
+      profile: computed(() => AppState.profile)
     }
   }
 }

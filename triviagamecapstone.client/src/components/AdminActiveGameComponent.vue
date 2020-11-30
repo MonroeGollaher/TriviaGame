@@ -4,7 +4,7 @@
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
         <h1 class="display-4">
-          Active Game Title
+          {{ activeGame.title }}
         </h1>
         <p class="lead">
           Room Code:
@@ -64,6 +64,7 @@ export default {
     const route = useRoute()
     const router = useRouter()
     onMounted(async() => {
+      await gameService.getActiveGame(route.params.gameId)
       await questionService.getQuestionsByGameId(route.params.gameId)
       await questionService.showActiveQuestion()
       await answerService.getResponses()
@@ -71,6 +72,7 @@ export default {
     })
     return {
       activeQuestion: computed(() => AppState.activeQuestion),
+      activeGame: computed(() => AppState.activeGame),
       answers: computed(() => AppState.teamAnswers),
       teams: computed(() => AppState.gameTeams),
       endGame() {
