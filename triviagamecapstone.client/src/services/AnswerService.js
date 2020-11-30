@@ -20,6 +20,7 @@ class AnswerService {
     // NOTE - Sends team's answer to the host to be approved or denied
     try {
       const res = await api.post('/api/responses/response/' + answerData.questionId, answerData)
+      logger.log('submit answer function', res)
       AppState.teamAnswers = res.data
     } catch (error) {
       logger.error(error)
