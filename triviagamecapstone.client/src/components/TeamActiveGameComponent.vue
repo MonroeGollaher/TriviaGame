@@ -54,7 +54,7 @@ export default {
   setup() {
     const state = reactive({
       answer: {
-        questionId: AppState.activeQuestion._id
+        questionId: AppState.activeQuestion.id
       }
     })
     const route = useRoute()
@@ -66,7 +66,7 @@ export default {
       state,
       activeQuestion: computed(() => AppState.activeQuestion),
       teamAnswer() {
-        logger.log(state.answer)
+        // logger.log('TeamActiveGame', AppState.activeQuestion)
         answerService.submitAnswer(state.answer)
       }
     }
