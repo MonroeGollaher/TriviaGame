@@ -11,14 +11,21 @@
     <div class="row justify-content-center align-items-center">
       <div class="col-12 col-lg-6">
         <p>
-          Room Code
+          Please enter team name & room code
           <!-- TODO  need to add game id to profile under currentGame -->
         </p>
         <form @submit="joinGame()">
-          <input type="text" v-model="state.profile.gameId">
-          <button type="submit" class="btn btn-success">
-            Join
-          </button>
+          <div class="p-2">
+            <input type="text" placeholder="Team Name" v-model="state.profile.teamName">
+          </div>
+          <div class="p-2">
+            <input type="text" placeholder="Room Code" v-model="state.profile.gameId">
+          </div>
+          <div class="p-2">
+            <button type="submit" class="btn btn-success">
+              Join
+            </button>
+          </div>
         </form>
       </div>
     </div>
