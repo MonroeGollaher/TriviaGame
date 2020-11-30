@@ -4,7 +4,7 @@
     <div class="row p-2 mb-2">
       <div class="col-6 d-flex align-items-center">
         <p class="mb-0">
-          {{ team.name }}
+          {{ team.teamName }}
         </p>
         <p class="ml-3 mb-0">
           {{ team.currentPoints }}

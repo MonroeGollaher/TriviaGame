@@ -30,18 +30,18 @@
         <team-answers-component v-for="answer in answers" :answers-prop="answer" :key="answer._id" />
       </div>
     </div>
-    <div class="row justify-content-end">
-      <div class="col-4 mt-5 d-flex justify-content-end mr-4">
-        <button @click="endGame" class="btn btn-danger ml-5 mr-3">
-          End game
-        </button>
-      </div>
-    </div>
     <div class="row mt-5 justify-content-center">
       <div class="col-10 card shadow radius25">
         <h3>Team Standings:</h3>
         <!-- //NOTE - live updates of the current points each team has earned so far during the game -->
         <GameLeaderBoard v-for="t in teams" :key="t" :team-prop="t" />
+      </div>
+    </div>
+    <div class="row justify-content-end">
+      <div class="col-4 mt-5 d-flex justify-content-end mr-4">
+        <button @click="endGame" class="btn btn-danger ml-5 mr-3">
+          End game
+        </button>
       </div>
     </div>
   </div>
