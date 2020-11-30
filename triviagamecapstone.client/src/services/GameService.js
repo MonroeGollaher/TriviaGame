@@ -54,6 +54,15 @@ class GameService {
       logger.error(error)
     }
   }
+
+  async getActiveGame(gameId) {
+    try {
+      const newActiveGame = AppState.games.find(g => g._id === gameId)
+      AppState.activeGame = newActiveGame
+    } catch (error) {
+      logger.error(error)
+    }
+  }
 }
 
 export const gameService = new GameService()
