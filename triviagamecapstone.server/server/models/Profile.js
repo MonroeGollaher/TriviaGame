@@ -11,7 +11,8 @@ const Profile = new Schema(
     picture: { type: String },
     currentGame: { type: ObjectId, ref: 'Game' },
     currentPoints: { type: Number, default: 0 },
-    gameScores: [{ type: Number }]
+    gameScores: [{ type: Number }],
+    teamName: { type: String }
   },
   { timestamps: true, _id: false, toJSON: { virtuals: true } }
 )

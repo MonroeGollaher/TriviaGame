@@ -26,7 +26,7 @@ export class ProfilesController extends BaseController {
   // NOTE this function allows teams to join a game, this will be built out more with sockets to give the teams live updates when joining a room/game
   async joinGame(req, res, next) {
     try {
-      res.send(await gameService.joinGame(req.userInfo, req.params.gameId))
+      res.send(await gameService.joinGame(req.userInfo, req.params.gameId, req.body))
     } catch (error) {
       next(error)
     }
