@@ -12,8 +12,9 @@ class GameService {
   }
 
   // NOTE this function takes in the team info and finds the profile that matches userInfo id and assigns the current gameId to the team
-  async joinGame(userInfo, id) {
-    return await dbContext.Profile.findByIdAndUpdate(userInfo.id, { currentGame: id })
+  async joinGame(userInfo, id, body) {
+    body.currentGame = id
+    return await dbContext.Profile.findByIdAndUpdate(userInfo.id, body)
   }
 
   // NOTE this function finds the game by its id, then checks to see if the user is a host, if so, returns the game by that id to launch for host

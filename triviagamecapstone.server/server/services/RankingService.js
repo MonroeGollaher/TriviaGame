@@ -29,14 +29,33 @@ class RankingService {
       } else {
         // @ts-ignore
         const currentScore = e._doc.gameScores
-        const newScores = [...currentScore, calculatedPoints]
+        const newScores = {
+          gameScores: [...currentScore, calculatedPoints]
+        }
         await dbContext.Profile.findByIdAndUpdate(e._id, newScores)
       }
+      const resetScore = {
+        currentPoints: 0
+      }
+      await dbContext.Profile.findByIdAndUpdate(e._id, resetScore)
     })
-    //
+
+    // deleteGameResponses is called.
+    this.deleteGameResponses(teams, game)
   }
 
-  // create cascading function for deleting responses and then full delete of game
+  async deleteGameResponses(teams, game) {
+    // this function finds all responses by the team in the current game, and deletes those responses.
+    teams.forEach(async e => {
+      await dbContext.Responses.deleteMany({ teamId: e._doc._id })
+    })
+    // removeCurrentGame is called
+    this.removeCurrentGame(game)
+  }
+
+  async removeCurrentGame(game) {
+    await dbContext.Games.findByIdAndDelete(game._doc._id)
+  }
 }
 
 export const rankingService = new RankingService()
