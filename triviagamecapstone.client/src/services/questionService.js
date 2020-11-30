@@ -33,6 +33,7 @@ class QuestionService {
       if (nextQuestion > AppState.gameQuestions.length) {
         router.push({ name: 'AdminHomePage' })
       } else {
+        AppState.teamAnswers = []
         AppState.activeQuestion = AppState.gameQuestions[nextQuestion]
       }
     } catch (error) {

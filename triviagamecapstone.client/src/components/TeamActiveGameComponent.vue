@@ -46,7 +46,6 @@ import { computed, onMounted, reactive } from 'vue'
 import ActiveQuestionComponent from '../components/ActiveQuestionCompnent'
 import { AppState } from '../AppState'
 import { useRoute } from 'vue-router'
-import { logger } from '../utils/Logger'
 import { questionService } from '../services/questionService'
 import { answerService } from '../services/AnswerService'
 export default {

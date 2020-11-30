@@ -2,8 +2,7 @@
 <template>
   <div class="activeQuestion-component container-fluid radius25 card shadow justify-content-center p-2">
     <h3>Question:</h3>
-    <p v-if="activeQuestion">
-      {{ activeQuestion.question }}
+    <p v-html="activeQuestion.question" v-if="activeQuestion">
     </p>
     <div v-if="authService.hasRoles('Host')">
       <h3>Answer:</h3>
