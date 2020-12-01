@@ -60,8 +60,8 @@ class GameService {
 
   async getActiveGame(gameId) {
     try {
-      const newActiveGame = AppState.games.find(g => g._id === gameId)
-      AppState.activeGame = newActiveGame
+      const res = await api.get('/api/games/' + gameId)
+      AppState.activeGame = res.data
     } catch (error) {
       logger.error(error)
     }

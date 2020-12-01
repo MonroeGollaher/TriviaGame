@@ -17,7 +17,7 @@ class SocketService {
       AppState.activeQuestion = data
     })
     socket.on('teamAnswer', data => {
-      logger.log(data, 'hi answers are working!')
+      logger.log('hi answers are working!')
       AppState.teamAnswers = [...AppState.teamAnswers, data]
     })
     socket.on('deletedItem', data => {

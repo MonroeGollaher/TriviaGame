@@ -22,6 +22,7 @@ export default {
   setup() {
     const route = useRoute()
     onMounted(async() => {
+      await gameService.getGames()
       await gameService.getActiveGame(route.params.gameId)
       socketService.joinRoom('activeGame')
     })

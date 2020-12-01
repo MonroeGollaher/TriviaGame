@@ -1,6 +1,7 @@
 import { api } from './AxiosService'
 import { logger } from '../utils/Logger'
 import { AppState } from '../AppState'
+// import socketService from '../services/SocketService'
 
 class AnswerService {
   async getResponses() {
@@ -20,7 +21,7 @@ class AnswerService {
     // NOTE - Sends team's answer to the host to be approved or denied
     try {
       const res = await api.post('/api/responses/response/' + questionId, answerData)
-      logger.log('submit answer function', res)
+      // logger.log('submit answer function', res)
       AppState.teamAnswers = [...AppState.teamAnswers, res.data]
     } catch (error) {
       logger.error(error)
