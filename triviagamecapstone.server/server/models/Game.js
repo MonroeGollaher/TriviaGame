@@ -5,7 +5,8 @@ const Game = new Schema(
   {
     title: { type: String, required: true },
     numberOfQuestions: { type: Number, required: true },
-    creatorId: { type: String, ref: 'Profile', required: true }
+    creatorId: { type: String, ref: 'Profile', required: true },
+    activeQuestion: { type: Object }
   },
   { timestamps: true, _id: true, toJSON: { virtuals: true } }
 )

@@ -23,7 +23,7 @@ class QuestionService {
     }
   }
 
-  nextQuestion() {
+  async nextQuestion() {
     // NOTE - cycles through the questions attached to the current game
     try {
       const router = useRouter()
@@ -34,7 +34,8 @@ class QuestionService {
         router.push({ name: 'AdminHomePage' })
       } else {
         AppState.teamAnswers = []
-        AppState.activeQuestion = AppState.gameQuestions[nextQuestion]
+        // AppState.activeQuestion = AppState.gameQuestions[nextQuestion]
+        await api.put('/api/questions/string', AppState.gameQuestions[nextQuestion])
       }
     } catch (error) {
       logger.error(error)

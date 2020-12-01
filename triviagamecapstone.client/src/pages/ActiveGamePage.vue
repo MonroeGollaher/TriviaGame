@@ -9,14 +9,23 @@
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { AppState } from '../AppState'
 import { AuthService } from '../services/AuthService'
+import socketService from '../services/SocketService'
+import { onBeforeRouteLeave } from 'vue-router'
 
 export default {
   name: 'ActiveGamePage',
   components: { },
   setup() {
+    onMounted(() => {
+      socketService.joinRoom('activeGame')
+    })
+    onBeforeRouteLeave((to, from, next) => {
+      socketService.leaveRoom('activeGame')
+      next()
+    })
     return {
       user: computed(() => AppState.user),
       authService: computed(() => AuthService)

@@ -57,6 +57,10 @@ class GameService {
     await dbContext.Questions.deleteMany({ gameId: game })
     return await dbContext.Games.findByIdAndDelete(game)
   }
+
+  async updateQuestion(game, body) {
+    await dbContext.Games.findByIdAndUpdate(game, body)
+  }
 }
 
 export const gameService = new GameService()
