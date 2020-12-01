@@ -1,6 +1,7 @@
 import { Auth0Provider } from '@bcwdev/auth0provider'
 import BaseController from '../utils/BaseController'
 import { responseService } from '../services/ResponseService'
+import socketService from '../services/SocketService'
 
 export class ResponseController extends BaseController {
   constructor() {
@@ -27,6 +28,7 @@ export class ResponseController extends BaseController {
       req.body.questionId = req.params.questionId
       req.body.teamId = req.userInfo.id
       res.send(await responseService.addResponse(req.body)).populate('creator')
+      await socketService.messageRoom('activeGame', 'teamAnswer', req.body)
     } catch (error) {
       next(error)
     }

@@ -35,6 +35,7 @@ class QuestionService {
       } else {
         AppState.teamAnswers = []
         // AppState.activeQuestion = AppState.gameQuestions[nextQuestion]
+        // need to pass through actual gameId, and update activequestioncomponenet to show the active question on game model.
         await api.put('/api/questions/string', AppState.gameQuestions[nextQuestion])
       }
     } catch (error) {

@@ -13,13 +13,16 @@ import { computed, onMounted } from 'vue'
 import { AppState } from '../AppState'
 import { AuthService } from '../services/AuthService'
 import socketService from '../services/SocketService'
-import { onBeforeRouteLeave } from 'vue-router'
+import { onBeforeRouteLeave, useRoute } from 'vue-router'
+import { gameService } from '../services/GameService'
 
 export default {
   name: 'ActiveGamePage',
   components: { },
   setup() {
-    onMounted(() => {
+    const route = useRoute()
+    onMounted(async() => {
+      await gameService.getActiveGame(route.params.gameId)
       socketService.joinRoom('activeGame')
     })
     onBeforeRouteLeave((to, from, next) => {
