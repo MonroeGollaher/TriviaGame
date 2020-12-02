@@ -6,8 +6,7 @@
     </p>
     <div v-if="authService.hasRoles('Host')">
       <h3>Answer:</h3>
-      <p v-if="activeQuestion">
-        {{ activeQuestion.answer }}
+      <p v-html="activeQuestion.answer" v-if="activeQuestion">
       </p>
       <button @click="nextQuestion" class="btn btn-primary text-light">
         Next Question

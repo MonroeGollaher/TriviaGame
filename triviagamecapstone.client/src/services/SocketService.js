@@ -17,7 +17,7 @@ class SocketService {
     })
     socket.on('teamAnswer', data => {
       logger.log('hi answers are working!')
-      AppState.teamAnswers = data
+      AppState.teamAnswers.push(data)
     })
     socket.on('orderRanking', data => {
       logger.log(data, 'hello from order ranking')

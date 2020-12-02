@@ -42,11 +42,9 @@
 </template>
 
 <script>
-import { computed, onMounted, reactive } from 'vue'
+import { computed, reactive } from 'vue'
 import ActiveQuestionComponent from '../components/ActiveQuestionCompnent'
 import { AppState } from '../AppState'
-import { useRoute } from 'vue-router'
-import { questionService } from '../services/questionService'
 import { answerService } from '../services/AnswerService'
 // import { logger } from '../utils/Logger'
 export default {
@@ -56,11 +54,6 @@ export default {
       answer: {
         // questionId: AppState.activeQuestion.id
       }
-    })
-    const route = useRoute()
-    onMounted(async() => {
-      await questionService.getQuestionsByGameId(route.params.gameId)
-      await questionService.showActiveQuestion()
     })
     return {
       state,

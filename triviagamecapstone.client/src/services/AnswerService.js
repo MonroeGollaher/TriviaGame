@@ -8,7 +8,7 @@ class AnswerService {
     // NOTE - This function fetches the team's responses to the current question to be displayed to the host
     try {
       // @ts-ignore
-      const questionId = AppState.activeQuestion._id
+      const questionId = AppState.activeGame.activeQuestion._id
       const res = await api.get('/api/responses/' + questionId)
       // console.log(res.data)
       AppState.teamAnswers = res.data
@@ -20,9 +20,10 @@ class AnswerService {
   async submitAnswer(answerData, questionId) {
     // NOTE - Sends team's answer to the host to be approved or denied
     try {
-      const res = await api.post('/api/responses/response/' + questionId, answerData)
-      // logger.log('submit answer function', res)
-      AppState.teamAnswers = [...AppState.teamAnswers, res.data]
+      await api.post('/api/responses/response/' + questionId, answerData)
+      await this.getResponses()
+      // AppState.teamAnswers = [...AppState.teamAnswers, res.data]
+      // logger.log('submit answer', AppState.teamAnswers)
     } catch (error) {
       logger.error(error)
     }

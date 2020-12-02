@@ -15,6 +15,7 @@ import { AuthService } from '../services/AuthService'
 import socketService from '../services/SocketService'
 import { onBeforeRouteLeave, useRoute } from 'vue-router'
 import { gameService } from '../services/GameService'
+import { questionService } from '../services/questionService'
 
 export default {
   name: 'ActiveGamePage',
@@ -24,6 +25,8 @@ export default {
     onMounted(async() => {
       await gameService.getGames()
       await gameService.getActiveGame(route.params.gameId)
+      await questionService.getQuestionsByGameId(route.params.gameId)
+      await questionService.showActiveQuestion()
       socketService.joinRoom('activeGame')
     })
     onBeforeRouteLeave((to, from, next) => {
