@@ -22,7 +22,7 @@
     </div>
     <div class="row justify-content-center align-items-center">
       <div class="col-12 col-lg-6" v-if="activeQuestion">
-        <form @submit.prevent="teamAnswer()" class="d-flex flex-column">
+        <form @submit.prevent="teamAnswer(activeQuestion._id)" class="d-flex flex-column">
           <input type="text" v-model="state.answer.wager" placeholder="Point Wager">
           <input type="text" v-model="state.answer.answer" placeholder="Team Answer">
           <button type="submit" class="btn btn-success">
@@ -42,31 +42,25 @@
 </template>
 
 <script>
-import { computed, onMounted, reactive } from 'vue'
+import { computed, reactive } from 'vue'
 import ActiveQuestionComponent from '../components/ActiveQuestionCompnent'
 import { AppState } from '../AppState'
-import { useRoute } from 'vue-router'
-import { questionService } from '../services/questionService'
 import { answerService } from '../services/AnswerService'
+// import { logger } from '../utils/Logger'
 export default {
   name: 'TeamActiveGameComponent',
   setup() {
     const state = reactive({
       answer: {
-        questionId: AppState.activeQuestion.id
+        // questionId: AppState.activeQuestion.id
       }
-    })
-    const route = useRoute()
-    onMounted(async() => {
-      await questionService.getQuestionsByGameId(route.params.gameId)
-      await questionService.showActiveQuestion()
     })
     return {
       state,
       activeQuestion: computed(() => AppState.activeQuestion),
-      teamAnswer() {
+      teamAnswer(questionId) {
         // logger.log('TeamActiveGame', AppState.activeQuestion)
-        answerService.submitAnswer(state.answer)
+        answerService.submitAnswer(state.answer, questionId)
       }
     }
   },

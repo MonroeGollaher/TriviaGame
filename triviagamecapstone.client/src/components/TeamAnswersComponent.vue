@@ -3,9 +3,17 @@
 <template>
   <div class="teamAnswers-component container-fluid">
     <div class="row">
-      <div class="col-12 d-flex justify-content-between">
-        <p>{{ answers.answer }}</p>
+      <!-- <div v-if="answers.answer.approved" class="col-12 d-flex justify-content-between">
+        <p>
+          {{ answers.answer }}
+        </p>
         <input type="checkbox" @change="toggleApproval(answers._id)">
+      </div> -->
+      <div class="col-12 d-flex justify-content-between">
+        <p>
+          {{ answers.answer }}
+        </p>
+        <input type="checkbox" @change="toggleApproval(answers._id)" :checked="answers.approved">
       </div>
     </div>
   </div>

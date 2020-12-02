@@ -39,8 +39,8 @@
     </div>
     <div class="row justify-content-end">
       <div class="col-4 mt-5 d-flex justify-content-end mr-4">
-        <button @click="endGame" class="btn btn-danger ml-5 mr-3">
-          End game
+        <button @click="pauseGame" class="btn btn-warning ml-5 mr-3">
+          Pause game
         </button>
       </div>
     </div>
@@ -48,7 +48,6 @@
 </template>
 
 <script>
-import { questionService } from '../services/questionService'
 import { answerService } from '../services/AnswerService'
 import ActiveQuestionCompnent from '../components/ActiveQuestionCompnent'
 import TeamAnswersComponent from '../components/TeamAnswersComponent'
@@ -65,8 +64,6 @@ export default {
     const router = useRouter()
     onMounted(async() => {
       await gameService.getActiveGame(route.params.gameId)
-      await questionService.getQuestionsByGameId(route.params.gameId)
-      await questionService.showActiveQuestion()
       await answerService.getResponses()
       await gameService.getGameTeams(route.params.gameId)
     })
@@ -75,7 +72,7 @@ export default {
       activeGame: computed(() => AppState.activeGame),
       answers: computed(() => AppState.teamAnswers),
       teams: computed(() => AppState.gameTeams),
-      endGame() {
+      pauseGame() {
         router.push({ name: 'AdminHomePage' })
         // gameService.endGame()
       }

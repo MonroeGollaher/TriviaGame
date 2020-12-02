@@ -1,13 +1,14 @@
 import { api } from './AxiosService'
 import { logger } from '../utils/Logger'
 import { AppState } from '../AppState'
+// import socketService from '../services/SocketService'
 
 class AnswerService {
   async getResponses() {
     // NOTE - This function fetches the team's responses to the current question to be displayed to the host
     try {
       // @ts-ignore
-      const questionId = AppState.activeQuestion._id
+      const questionId = AppState.activeGame.activeQuestion._id
       const res = await api.get('/api/responses/' + questionId)
       // console.log(res.data)
       AppState.teamAnswers = res.data
@@ -16,12 +17,13 @@ class AnswerService {
     }
   }
 
-  async submitAnswer(answerData) {
+  async submitAnswer(answerData, questionId) {
     // NOTE - Sends team's answer to the host to be approved or denied
     try {
-      const res = await api.post('/api/responses/response/' + answerData.questionId, answerData)
-      logger.log('submit answer function', res)
-      AppState.teamAnswers = res.data
+      await api.post('/api/responses/response/' + questionId, answerData)
+      await this.getResponses()
+      // AppState.teamAnswers = [...AppState.teamAnswers, res.data]
+      // logger.log('submit answer', AppState.teamAnswers)
     } catch (error) {
       logger.error(error)
     }
@@ -31,7 +33,12 @@ class AnswerService {
     // NOTE - This allows host to approve answers to award points
     try {
       const currentAnswer = AppState.teamAnswers.find(a => a._id === answersId)
-      currentAnswer.approved = true
+      if (currentAnswer.approved === false) {
+        currentAnswer.approved = true
+      } else {
+        currentAnswer.approved = false
+      }
+
       // logger.log(currentAnswer)
       await api.put('/api/responses/' + answersId, currentAnswer)
     } catch (error) {

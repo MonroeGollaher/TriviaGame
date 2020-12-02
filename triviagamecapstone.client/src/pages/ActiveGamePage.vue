@@ -9,14 +9,30 @@
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { AppState } from '../AppState'
 import { AuthService } from '../services/AuthService'
+import socketService from '../services/SocketService'
+import { onBeforeRouteLeave, useRoute } from 'vue-router'
+import { gameService } from '../services/GameService'
+import { questionService } from '../services/questionService'
 
 export default {
   name: 'ActiveGamePage',
   components: { },
   setup() {
+    const route = useRoute()
+    onMounted(async() => {
+      await gameService.getGames()
+      await gameService.getActiveGame(route.params.gameId)
+      await questionService.getQuestionsByGameId(route.params.gameId)
+      await questionService.showActiveQuestion()
+      socketService.joinRoom('activeGame')
+    })
+    onBeforeRouteLeave((to, from, next) => {
+      socketService.leaveRoom('activeGame')
+      next()
+    })
     return {
       user: computed(() => AppState.user),
       authService: computed(() => AuthService)

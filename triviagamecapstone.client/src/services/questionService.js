@@ -16,14 +16,18 @@ class QuestionService {
   showActiveQuestion() {
     // NOTE - Shows the current question
     try {
-      AppState.activeQuestion = AppState.gameQuestions[0]
+      if (AppState.activeQuestion === 'undefined') {
+        AppState.activeQuestion = AppState.gameQuestions[0]
+      } else {
+        AppState.activeQuestion = AppState.gameQuestions.find(q => q.id === AppState.activeGame.activeQuestion.id)
+      }
       // logger.log(AppState.activeQuestion)
     } catch (error) {
       logger.error(error)
     }
   }
 
-  nextQuestion() {
+  async nextQuestion(gameId) {
     // NOTE - cycles through the questions attached to the current game
     try {
       const router = useRouter()
@@ -34,7 +38,10 @@ class QuestionService {
         router.push({ name: 'AdminHomePage' })
       } else {
         AppState.teamAnswers = []
-        AppState.activeQuestion = AppState.gameQuestions[nextQuestion]
+        // AppState.activeQuestion = AppState.gameQuestions[nextQuestion]
+        // need to pass through actual gameId, and update activequestioncomponenet to show the active question on game model.
+
+        await api.put('/api/questions/' + gameId, AppState.gameQuestions[nextQuestion])
       }
     } catch (error) {
       logger.error(error)

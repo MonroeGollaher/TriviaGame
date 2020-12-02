@@ -1,6 +1,7 @@
 import { Auth0Provider } from '@bcwdev/auth0provider'
 import BaseController from '../utils/BaseController'
 import { responseService } from '../services/ResponseService'
+import socketService from '../services/SocketService'
 
 export class ResponseController extends BaseController {
   constructor() {
@@ -15,7 +16,9 @@ export class ResponseController extends BaseController {
   // NOTE this function allows the host to change the approval of accepting question answers from the team's responses
   async toggleApproval(req, res, next) {
     try {
-      res.send(await responseService.toggleApproval(req.body, req.params.responseId, req.userInfo))
+      const created = (await responseService.toggleApproval(req.body, req.params.responseId, req.userInfo))
+      await socketService.messageRoom('activeGame', 'orderRanking', created)
+      res.send(created)
     } catch (error) {
       next(error)
     }
@@ -26,7 +29,9 @@ export class ResponseController extends BaseController {
     try {
       req.body.questionId = req.params.questionId
       req.body.teamId = req.userInfo.id
-      res.send(await responseService.addResponse(req.body)).populate('creator')
+      const created = (await responseService.addResponse(req.body)).populate('creator')
+      await socketService.messageRoom('activeGame', 'teamAnswer', created)
+      res.send(created)
     } catch (error) {
       next(error)
     }
