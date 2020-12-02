@@ -21,10 +21,12 @@ import { computed, onMounted } from 'vue'
 import { questionService } from '../services/questionService'
 import { AppState } from '../AppState'
 import { AuthService } from '../services/AuthService'
+import { useRoute } from 'vue-router'
 
 export default {
   name: 'ActiveQuestionComponent',
   setup(props) {
+    const route = useRoute()
     onMounted(async() => {
       await questionService.showActiveQuestion()
     })
@@ -32,7 +34,7 @@ export default {
       activeQuestion: computed(() => AppState.activeQuestion),
       authService: computed(() => AuthService),
       nextQuestion() {
-        questionService.nextQuestion()
+        questionService.nextQuestion(route.params.gameId)
       }
     }
   },

@@ -8,9 +8,10 @@ class ResponseService {
     // @ts-ignore
     const wager = response._doc.wager
     if (userInfo.roles[0] === 'Host') {
+      // const approved = await dbContext.Responses.findByIdAndUpdate(responseId, body, { new: true })
       await dbContext.Responses.findByIdAndUpdate(responseId, body, { new: true })
       // @ts-ignore
-      const points = this.updatePoints(response._doc.teamId, wager, body.approved)
+      const points = await this.updatePoints(response._doc.teamId, wager, body.approved)
 
       return points
     } else {
@@ -28,14 +29,14 @@ class ResponseService {
       const reqBodyInc = {
         currentPoints: currentValue
       }
-      return await dbContext.Profile.findByIdAndUpdate(profileId, reqBodyInc)
+      return await dbContext.Profile.findByIdAndUpdate(profileId, reqBodyInc, { new: true })
     } else if (approvedValue === false) {
       // NOTE We will need to refactor this and how it works
       currentValue -= wager
       const reqBodyDec = {
         currentPoints: currentValue
       }
-      return await dbContext.Profile.findByIdAndUpdate(profileId, reqBodyDec)
+      return await dbContext.Profile.findByIdAndUpdate(profileId, reqBodyDec, { new: true })
     }
   }
 

@@ -59,7 +59,7 @@ class GameService {
   }
 
   async updateQuestion(game, body) {
-    await dbContext.Games.findByIdAndUpdate(game, body)
+    await dbContext.Games.findByIdAndUpdate(game, { activeQuestion: body }, { new: true })
   }
 }
 

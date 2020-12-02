@@ -12,12 +12,12 @@ class SocketService {
     })
     // NOTE REGISTER ADDITIONAL LISTENERS
     socket.on('nextQuestion', data => {
-      logger.log(data)
+      logger.log('next question?', data)
       AppState.activeQuestion = data
     })
     socket.on('teamAnswer', data => {
       logger.log('hi answers are working!')
-      AppState.teamAnswers = [...AppState.teamAnswers, data]
+      AppState.teamAnswers = data
     })
     socket.on('orderRanking', data => {
       logger.log(data, 'hello from order ranking')

@@ -23,7 +23,7 @@ class QuestionService {
     }
   }
 
-  async nextQuestion() {
+  async nextQuestion(gameId) {
     // NOTE - cycles through the questions attached to the current game
     try {
       const router = useRouter()
@@ -36,7 +36,8 @@ class QuestionService {
         AppState.teamAnswers = []
         // AppState.activeQuestion = AppState.gameQuestions[nextQuestion]
         // need to pass through actual gameId, and update activequestioncomponenet to show the active question on game model.
-        await api.put('/api/questions/string', AppState.gameQuestions[nextQuestion])
+
+        await api.put('/api/questions/' + gameId, AppState.gameQuestions[nextQuestion])
       }
     } catch (error) {
       logger.error(error)

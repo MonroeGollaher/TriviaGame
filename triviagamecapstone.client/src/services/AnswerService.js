@@ -32,7 +32,12 @@ class AnswerService {
     // NOTE - This allows host to approve answers to award points
     try {
       const currentAnswer = AppState.teamAnswers.find(a => a._id === answersId)
-      currentAnswer.approved = true
+      if (currentAnswer.approved === false) {
+        currentAnswer.approved = true
+      } else {
+        currentAnswer.approved = false
+      }
+
       // logger.log(currentAnswer)
       await api.put('/api/responses/' + answersId, currentAnswer)
     } catch (error) {
