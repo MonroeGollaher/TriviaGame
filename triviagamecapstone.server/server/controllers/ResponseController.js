@@ -16,7 +16,9 @@ export class ResponseController extends BaseController {
   // NOTE this function allows the host to change the approval of accepting question answers from the team's responses
   async toggleApproval(req, res, next) {
     try {
-      res.send(await responseService.toggleApproval(req.body, req.params.responseId, req.userInfo))
+      const created = (await responseService.toggleApproval(req.body, req.params.responseId, req.userInfo))
+      await socketService.messageRoom('activeGame', 'orderRanking', created)
+      res.send(created)
     } catch (error) {
       next(error)
     }

@@ -1,7 +1,6 @@
 import io from 'socket.io-client'
 import { AppState } from '../AppState'
 import { logger } from '../utils/Logger'
-import router from '../router'
 
 let socket = {}
 class SocketService {
@@ -20,9 +19,10 @@ class SocketService {
       logger.log('hi answers are working!')
       AppState.teamAnswers = [...AppState.teamAnswers, data]
     })
-    socket.on('deletedItem', data => {
-      logger.log(data)
-      router.push({ name: 'Items' })
+    socket.on('orderRanking', data => {
+      logger.log(data, 'hello from order ranking')
+      const editedTeam = AppState.gameTeams.findIndex(t => t._id === data._id)
+      AppState.gameTeams.splice(editedTeam, 1, data)
     })
   }
 
