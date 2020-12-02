@@ -11,7 +11,7 @@
         </p>
       </div>
       <div class="col-6 d-flex justify-content-end align-items-center">
-        <button class="btn btn-danger">
+        <button class="btn btn-sm btn-danger">
           Disqualify
         </button>
       </div>

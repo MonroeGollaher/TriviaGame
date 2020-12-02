@@ -1,6 +1,6 @@
 <!-- //NOTE - This is a form that allows a host to create a new game and determine the number of questions to get from the api -->
 <template>
-  <div class="newGame-component container-fluid card shadow col-12 my-3 radius25">
+  <div class="newGame-component container-fluid card shadow col-12 my-3 radius25 p-4">
     <h2 class="my-1">
       New Game
     </h2>
