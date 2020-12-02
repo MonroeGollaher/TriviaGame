@@ -1,12 +1,11 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      <div class="d-flex flex-column align-items-center">
-        <img
-          alt="logo"
-          src="../assets/img/cw-logo.png"
-          height="45"
-        />
+      <div class="d-flex align-items-center justify-content-center">
+        <i class="fas fa-book-open text-light mr-3"></i>
+        <h5 class="mb-0">
+          Insert Name Here
+        </h5>
       </div>
     </router-link>
     <button
@@ -32,6 +31,11 @@
             About
           </router-link>
         </li>
+        <li class="nav-item">
+          <router-link :to="{ name: 'AdminHomePage' }" class="nav-link">
+            Host Home Page
+          </router-link>
+        </li>
       </ul>
       <span class="navbar-text">
         <button
@@ -51,7 +55,7 @@
               :src="user.picture"
               alt="user photo"
               height="40"
-              class="rounded"
+              class="rounded-circle"
             />
             <span class="mx-3">{{ user.name }}</span>
           </div>

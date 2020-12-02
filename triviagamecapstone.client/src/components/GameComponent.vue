@@ -2,8 +2,8 @@
 <template>
   <div class="game-component container-fluid">
     <div class="col-12">
-      <div class="row justify-content-between align-items-center border-rounded bg-light shadow my-3 radius25">
-        <div class="col-4 d-flex flex-column justify-content-center align-items-center">
+      <div class="row justify-content-between align-items-center border-rounded bg-light shadow my-3 radius25 p-4">
+        <div class="col-8 d-flex flex-column justify-content-center align-items-center">
           <h5 class="mb-0">
             {{ gameProp.title }}
           </h5>
