@@ -33,7 +33,7 @@
         </li>
         <li class="nav-item">
           <router-link :to="{ name: 'AdminHomePage' }" class="nav-link">
-            Host Home Page
+            Game Page
           </router-link>
         </li>
       </ul>

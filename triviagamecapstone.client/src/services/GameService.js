@@ -7,8 +7,9 @@ class GameService {
   async joinGame(profile) {
     // NOTE - attaches team to an active game
     try {
-      console.log(profile)
-      await api.put('/profile/joingame/' + profile.gameId, profile)
+      await api.put('/profile/joingame/' + profile.roomPin, profile)
+      const res = await api.get('/profile')
+      return res.data
     } catch (error) {
       logger.error(error)
     }
@@ -18,7 +19,7 @@ class GameService {
     // NOTE - Fetches teams attached to current game
     try {
       const res = await api.get('/profile/' + gameId)
-      console.log(res.data)
+      logger.log(res.data)
       // @ts-ignore
       AppState.gameTeams = res.data
     } catch (error) {

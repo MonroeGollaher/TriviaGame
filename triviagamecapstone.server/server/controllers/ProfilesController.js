@@ -11,7 +11,7 @@ export class ProfilesController extends BaseController {
       .get('', this.getUserProfile)
       .get('/:gameId', this.getAllTeamsByGameId)
       // .put('', this.editProfile)
-      .put('/joingame/:gameId', this.joinGame)
+      .put('/joingame/:roomPin', this.joinGame)
   }
 
   // NOTE this function gets all the teams associated with a gamesId, this allows the host to see all of the teams for ranking.
@@ -26,7 +26,7 @@ export class ProfilesController extends BaseController {
   // NOTE this function allows teams to join a game, this will be built out more with sockets to give the teams live updates when joining a room/game
   async joinGame(req, res, next) {
     try {
-      res.send(await gameService.joinGame(req.userInfo, req.params.gameId, req.body))
+      res.send(await gameService.joinGame(req.userInfo, req.params.roomPin, req.body))
     } catch (error) {
       next(error)
     }
