@@ -40,7 +40,7 @@
         <button @click="pauseGame" class="btn btn-warning ml-5 mr-2">
           Pause Game
         </button>
-        <button @click="endGame" class="btn btn-danger ml-5 mr-5">
+        <button @click="endGame(activeGame._id)" class="btn btn-danger ml-5 mr-5">
           End Game
         </button>
       </div>
@@ -76,6 +76,10 @@ export default {
       pauseGame() {
         router.push({ name: 'AdminHomePage' })
         // gameService.endGame()
+      },
+      endGame(gameId) {
+        gameService.endGame(gameId)
+        router.push({ name: 'AdminHomePage' })
       }
       // getResponses() {
       //   gameService.getResponses()
