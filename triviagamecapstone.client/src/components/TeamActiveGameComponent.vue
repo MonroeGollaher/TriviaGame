@@ -33,7 +33,7 @@
     </div>
     <div class="row">
       <div class="col-12 col-6-lg">
-        <button @click="forfietGame()" class="btn btn-danger">
+        <button @click="removeTeam" class="btn btn-danger">
           Forfiet Game?
         </button>
       </div>
@@ -46,6 +46,7 @@ import { computed, reactive } from 'vue'
 import ActiveQuestionComponent from '../components/ActiveQuestionCompnent'
 import { AppState } from '../AppState'
 import { answerService } from '../services/AnswerService'
+import { gameService } from '../services/GameService'
 // import { logger } from '../utils/Logger'
 export default {
   name: 'TeamActiveGameComponent',
@@ -61,6 +62,9 @@ export default {
       teamAnswer(questionId) {
         // logger.log('TeamActiveGame', AppState.activeQuestion)
         answerService.submitAnswer(state.answer, questionId)
+      },
+      removeTeam() {
+        gameService.removeTeam()
       }
     }
   },

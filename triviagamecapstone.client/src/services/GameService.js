@@ -7,7 +7,6 @@ class GameService {
   async joinGame(profile) {
     // NOTE - attaches team to an active game
     try {
-      debugger
       await api.put('/profile/joingame/' + profile.roomPin, profile)
       const res = await api.get('/profile')
       return res.data
