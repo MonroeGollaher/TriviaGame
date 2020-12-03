@@ -10,7 +10,7 @@ export class ProfilesController extends BaseController {
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getUserProfile)
       .get('/:gameId', this.getAllTeamsByGameId)
-      // .put('', this.editProfile)
+      .put('/:profileId', this.editProfile)
       .put('/joingame/:roomPin', this.joinGame)
   }
 
@@ -32,13 +32,13 @@ export class ProfilesController extends BaseController {
     }
   }
 
-  // async editProfile(req, res, next) {
-  //   try {
-  //     res.send(await profilesService.updateProfile(req.userInfo))
-  //   } catch (error) {
-  //     next(error)
-  //   }
-  // }
+  async editProfile(req, res, next) {
+    try {
+      res.send(await gameService.editProfile(req.body, req.params.profileId))
+    } catch (error) {
+      next(error)
+    }
+  }
 
   // NOTE prebuilt function using Auth0 to set profile to the profile info that comes in off of Auth0
   async getUserProfile(req, res, next) {

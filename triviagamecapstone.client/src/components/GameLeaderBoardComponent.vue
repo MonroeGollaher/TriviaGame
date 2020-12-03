@@ -11,7 +11,7 @@
         </p>
       </div>
       <div class="col-6 d-flex justify-content-end align-items-center">
-        <button class="btn btn-sm btn-danger" @click="removeTeam()">
+        <button class="btn btn-sm btn-danger" @click="removeTeam(team.id)">
           Disqualify
         </button>
       </div>
@@ -30,7 +30,7 @@ export default {
   setup(props) {
     return {
       team: computed(() => props.teamProp),
-      removeTeam() {
+      removeTeam(teamId) {
         gameService.removeTeam(teamId)
       }
     }

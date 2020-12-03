@@ -80,5 +80,26 @@ class GameService {
       logger.error(error)
     }
   }
+
+  async removeTeam(teamId) {
+    try {
+      // remove team from from gameTeams array
+      const team = AppState.gameTeams.findIndex(t => t.id === teamId)
+      AppState.gameTeams.splice(team, 1)
+      // remove currentGame and roomPin from profile
+      AppState.profile.currentGame = null
+      AppState.profile.currentPoints = 0
+      AppState.profile.roomPin = ''
+      const editedProfile = {
+        currentGame: null,
+        currentPoints: 0,
+        roomPin: ''
+      }
+      logger.log(editedProfile)
+      await api.put('/profile/' + teamId, editedProfile)
+    } catch (error) {
+      logger.error(error)
+    }
+  }
 }
 export const gameService = new GameService()

@@ -66,6 +66,10 @@ class GameService {
   async updateQuestion(game, body) {
     await dbContext.Games.findByIdAndUpdate(game, { activeQuestion: body }, { new: true })
   }
+
+  async editProfile(body, profileId) {
+    await dbContext.Profile.findByIdAndUpdate(profileId, body, { new: true })
+  }
 }
 
 export const gameService = new GameService()
