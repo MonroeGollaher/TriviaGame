@@ -11,7 +11,7 @@
         </p>
       </div>
       <div class="col-6 d-flex justify-content-end align-items-center">
-        <button class="btn btn-sm btn-danger">
+        <button class="btn btn-sm btn-danger" @click="removeTeam()">
           Disqualify
         </button>
       </div>
@@ -21,6 +21,7 @@
 
 <script>
 import { computed } from 'vue'
+import { gameService } from '../services/GameService'
 export default {
   name: 'GameLeaderBoard',
   props: {
@@ -28,7 +29,10 @@ export default {
   },
   setup(props) {
     return {
-      team: computed(() => props.teamProp)
+      team: computed(() => props.teamProp),
+      removeTeam() {
+        gameService.removeTeam(teamId)
+      }
     }
   },
   components: {}
