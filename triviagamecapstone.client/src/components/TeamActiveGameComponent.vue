@@ -33,7 +33,7 @@
     </div>
     <div class="row">
       <div class="col-12 col-6-lg">
-        <button @click="removeTeam" class="btn btn-danger">
+        <button @click="removeTeam(profile.id)" class="btn btn-danger">
           Forfiet Game?
         </button>
       </div>
@@ -47,10 +47,12 @@ import ActiveQuestionComponent from '../components/ActiveQuestionCompnent'
 import { AppState } from '../AppState'
 import { answerService } from '../services/AnswerService'
 import { gameService } from '../services/GameService'
+import { useRouter } from 'vue-router'
 // import { logger } from '../utils/Logger'
 export default {
   name: 'TeamActiveGameComponent',
   setup() {
+    const router = useRouter()
     const state = reactive({
       answer: {
         // questionId: AppState.activeQuestion.id
@@ -58,13 +60,15 @@ export default {
     })
     return {
       state,
+      profile: computed(() => AppState.profile),
       activeQuestion: computed(() => AppState.activeQuestion),
       teamAnswer(questionId) {
         // logger.log('TeamActiveGame', AppState.activeQuestion)
         answerService.submitAnswer(state.answer, questionId)
       },
-      removeTeam() {
-        gameService.removeTeam()
+      removeTeam(profileId) {
+        gameService.removeTeam(profileId)
+        router.push({ name: 'TeamJoinGame' })
       }
     }
   },
