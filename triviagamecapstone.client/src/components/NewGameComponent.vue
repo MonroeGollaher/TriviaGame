@@ -17,12 +17,19 @@
       </div>
       <div class="form-group">
         <label for="questionsAmount">Number of Questions</label>
-        <input type="number" class="form-control" id="questionsAmount" v-model="state.newGame.numberOfQuestions">
+        <input type="number"
+               class="form-control"
+               id="questionsAmount"
+               placeholder="20 questions max"
+               max="20"
+               min="1"
+               v-model="state.newGame.numberOfQuestions"
+        >
       </div>
-      <div class="form-group">
-        <label for="questionsAmount">Room Code</label>
-        <input class="form-control" id="questionsAmount">
-      </div>
+      <!-- <div class="form-group">
+        <label for="questionsAmount">Room Pin</label>
+        <input class="form-control" id="questionsAmount" placeholder="Please enter a 8 digit code" minlength="8" v-model="state.newGame.roomPin">
+      </div> -->
       <button type="submit" class="btn btn-primary mb-3">
         Create game
       </button>
@@ -33,6 +40,7 @@
 <script>
 import { onMounted, reactive } from 'vue'
 import { gameService } from '../services/GameService'
+// import { logger } from '../utils/Logger'
 export default {
   name: 'NewGameComponent',
   components: {},
@@ -48,7 +56,7 @@ export default {
     return {
       state,
       createGame() {
-        console.log(state.newGame)
+        // logger.log(state.newGame)
         gameService.createGame(state.newGame)
       }
     }

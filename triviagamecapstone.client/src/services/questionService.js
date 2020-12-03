@@ -16,9 +16,10 @@ class QuestionService {
   showActiveQuestion() {
     // NOTE - Shows the current question
     try {
-      if (AppState.activeQuestion === 'undefined') {
+      if (AppState.activeQuestion === undefined) {
         AppState.activeQuestion = AppState.gameQuestions[0]
       } else {
+        // @ts-ignore
         AppState.activeQuestion = AppState.gameQuestions.find(q => q.id === AppState.activeGame.activeQuestion.id)
       }
       // logger.log(AppState.activeQuestion)

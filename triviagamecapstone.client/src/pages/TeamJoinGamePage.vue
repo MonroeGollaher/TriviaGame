@@ -14,12 +14,12 @@
           Please enter team name & room code
           <!-- TODO  need to add game id to profile under currentGame -->
         </p>
-        <form @submit="joinGame()">
+        <form @submit.prevent="joinGame()">
           <div class="p-2">
             <input type="text" placeholder="Team Name" v-model="state.profile.teamName">
           </div>
           <div class="p-2">
-            <input type="text" placeholder="Room Code" v-model="state.profile.gameId">
+            <input type="text" placeholder="Room Pin" v-model="state.profile.roomPin">
           </div>
           <div class="p-2">
             <button type="submit" class="btn btn-success">
@@ -35,6 +35,7 @@
 <script>
 import { reactive } from 'vue'
 import { gameService } from '../services/GameService'
+import { logger } from '../utils/Logger'
 import { useRouter } from 'vue-router'
 
 export default {
@@ -46,9 +47,10 @@ export default {
     const router = useRouter()
     return {
       state,
-      joinGame() {
-        gameService.joinGame(state.profile)
-        router.push({ name: 'ActiveGamePage', params: { gameId: state.profile.gameId } })
+      async joinGame() {
+        const teamProfile = await gameService.joinGame(state.profile)
+        logger.log(teamProfile)
+        router.push({ name: 'ActiveGamePage', params: { gameId: teamProfile.currentGame } })
       }
     }
   },
