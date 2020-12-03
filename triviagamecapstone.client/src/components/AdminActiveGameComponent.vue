@@ -6,7 +6,7 @@
         {{ activeGame.title }}
       </h1>
       <p class="lead">
-        Room Code:
+        Room Code: {{ activeGame.roomPin }}
       </p>
     </div>
     <div class="row text-center justify-content-around p-4">

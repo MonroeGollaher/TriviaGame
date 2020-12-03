@@ -12,8 +12,9 @@ const Profile = new Schema(
     currentGame: { type: ObjectId, ref: 'Game' },
     currentPoints: { type: Number, default: 0 },
     gameScores: [{ type: Number }],
+    // @ts-ignore
     teamName: { type: String, default: this.name },
-    roomPin: { type: String, required: true }
+    roomPin: { type: String }
   },
   { timestamps: true, _id: false, toJSON: { virtuals: true } }
 )
