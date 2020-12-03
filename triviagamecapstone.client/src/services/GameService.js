@@ -7,6 +7,8 @@ class GameService {
   async joinGame(profile) {
     // NOTE - attaches team to an active game
     try {
+      const upperCaseRoomPin = profile.roomPin.toUpperCase()
+      profile.roomPin = upperCaseRoomPin
       await api.put('/profile/joingame/' + profile.roomPin, profile)
       const res = await api.get('/profile')
       return res.data
@@ -97,6 +99,15 @@ class GameService {
       }
       logger.log(editedProfile)
       await api.put('/profile/' + teamId, editedProfile)
+    } catch (error) {
+      logger.error(error)
+    }
+  }
+
+  async endGame(gameId) {
+    try {
+      await api.put('api/games/' + gameId + '/endgame')
+      AppState.gameQuestions = []
     } catch (error) {
       logger.error(error)
     }
