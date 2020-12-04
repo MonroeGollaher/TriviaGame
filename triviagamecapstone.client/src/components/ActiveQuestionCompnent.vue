@@ -20,20 +20,25 @@ import { computed, onMounted } from 'vue'
 import { questionService } from '../services/questionService'
 import { AppState } from '../AppState'
 import { AuthService } from '../services/AuthService'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 export default {
   name: 'ActiveQuestionComponent',
   setup(props) {
     const route = useRoute()
+    const router = useRouter()
     onMounted(async() => {
       await questionService.showActiveQuestion()
     })
     return {
       activeQuestion: computed(() => AppState.activeQuestion),
       authService: computed(() => AuthService),
-      nextQuestion() {
-        questionService.nextQuestion(route.params.gameId)
+      async nextQuestion() {
+        const nextQuestion = questionService.nextQuestion(route.params.gameId)
+        // debugger
+        if (await nextQuestion === AppState.gameQuestions.length) {
+          router.push({ name: 'AdminHomePage' })
+        }
       }
     }
   },

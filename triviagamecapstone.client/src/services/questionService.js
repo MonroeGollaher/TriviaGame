@@ -1,7 +1,6 @@
 import { api, triviaApi } from './AxiosService'
 import { logger } from '../utils/Logger'
 import { AppState } from '../AppState'
-import { useRouter } from 'vue-router'
 
 class QuestionService {
   async addQuestions(gameId, body) {
@@ -31,12 +30,12 @@ class QuestionService {
   async nextQuestion(gameId) {
     // NOTE - cycles through the questions attached to the current game
     try {
-      const router = useRouter()
       // @ts-ignore
       let nextQuestion = AppState.gameQuestions.findIndex(q => q._id === AppState.activeQuestion._id)
       nextQuestion++
-      if (nextQuestion > AppState.gameQuestions.length) {
-        router.push({ name: 'AdminHomePage' })
+      if (nextQuestion === AppState.gameQuestions.length) {
+        AppState.activeQuestion = {}
+        return nextQuestion
       } else {
         AppState.teamAnswers = []
         // AppState.activeQuestion = AppState.gameQuestions[nextQuestion]
