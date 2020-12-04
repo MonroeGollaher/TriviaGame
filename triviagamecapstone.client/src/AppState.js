@@ -14,5 +14,6 @@ export const AppState = reactive({
   // listener
   teamAnswers: [],
   // listener, completed
-  gameTeams: []
+  gameTeams: [],
+  teamRanking: []
 })

@@ -7,8 +7,6 @@ class GameService {
   async joinGame(profile) {
     // NOTE - attaches team to an active game
     try {
-      const upperCaseRoomPin = profile.roomPin.toUpperCase()
-      profile.roomPin = upperCaseRoomPin
       await api.put('/profile/joingame/' + profile.roomPin, profile)
       const res = await api.get('/profile')
       return res.data
@@ -78,36 +76,6 @@ class GameService {
       const res = await api.get('/api/games/' + gameId)
       // res.data.activeQuestion = {}
       AppState.activeGame = res.data
-    } catch (error) {
-      logger.error(error)
-    }
-  }
-
-  async removeTeam(teamId) {
-    try {
-      // remove team from from gameTeams array
-      const team = AppState.gameTeams.findIndex(t => t.id === teamId)
-      AppState.gameTeams.splice(team, 1)
-      // remove currentGame and roomPin from profile
-      AppState.profile.currentGame = null
-      AppState.profile.currentPoints = 0
-      AppState.profile.roomPin = ''
-      const editedProfile = {
-        currentGame: null,
-        currentPoints: 0,
-        roomPin: ''
-      }
-      logger.log(editedProfile)
-      await api.put('/profile/' + teamId, editedProfile)
-    } catch (error) {
-      logger.error(error)
-    }
-  }
-
-  async endGame(gameId) {
-    try {
-      await api.put('api/games/' + gameId + '/endgame')
-      AppState.gameQuestions = []
     } catch (error) {
       logger.error(error)
     }
