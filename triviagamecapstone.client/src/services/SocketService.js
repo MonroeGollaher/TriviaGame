@@ -21,8 +21,13 @@ class SocketService {
     })
     socket.on('orderRanking', data => {
       logger.log(data, 'hello from order ranking')
-      const editedTeam = AppState.gameTeams.findIndex(t => t._id === data._id)
-      AppState.gameTeams.splice(editedTeam, 1, data)
+      const exists = AppState.gameTeams.find(t => t._id === data._id)
+      if (exists) {
+        const editedTeam = AppState.gameTeams.findIndex(t => t._id === data._id)
+        AppState.gameTeams.splice(editedTeam, 1, data)
+      } else {
+        AppState.gameTeams.push(data)
+      }
     })
   }
 

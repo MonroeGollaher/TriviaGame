@@ -32,7 +32,7 @@
       <div class="col-10 card shadow radius25 p-4">
         <h3>Team Standings:</h3>
         <!-- //NOTE - live updates of the current points each team has earned so far during the game -->
-        <GameLeaderBoard v-for="t in teams" :key="t" :team-prop="t" />
+        <GameLeaderBoard v-for="t in teamRanking" :key="t" :team-prop="t" />
       </div>
     </div>
     <div class="row justify-content-end">
@@ -73,6 +73,7 @@ export default {
       activeGame: computed(() => AppState.activeGame),
       answers: computed(() => AppState.teamAnswers),
       teams: computed(() => AppState.gameTeams),
+      teamRanking: computed(AppState.teamRanking = () => AppState.gameTeams.sort((a, b) => b.currentPoints - a.currentPoints)),
       pauseGame() {
         router.push({ name: 'AdminHomePage' })
         // gameService.endGame()
