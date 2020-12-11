@@ -10,6 +10,7 @@ export const AppState = reactive({
   questions: [],
   // listener. completed.
   activeQuestion: {},
+  wrongAnswers: [],
   gameQuestions: [],
   // listener
   teamAnswers: [],
