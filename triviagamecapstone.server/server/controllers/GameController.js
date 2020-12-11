@@ -4,6 +4,7 @@ import { Auth0Provider } from '@bcwdev/auth0provider'
 import BaseController from '../utils/BaseController'
 import { gameService } from '../services/GameService'
 import { rankingService } from '../services/RankingService'
+import socketService from '../services/SocketService'
 
 export class GameController extends BaseController {
   constructor() {
@@ -21,6 +22,7 @@ export class GameController extends BaseController {
   async updateScoresAndEndGame(req, res, next) {
     try {
       res.send(await rankingService.updateScoresAndEndGame(req.params.gameId, req.userInfo))
+      await socketService.messageRoom('activeGame', 'endGame', req.body)
     } catch (error) {
       next(error)
     }

@@ -89,8 +89,11 @@ class GameService {
       const team = AppState.gameTeams.findIndex(t => t.id === teamId)
       AppState.gameTeams.splice(team, 1)
       // remove currentGame and roomPin from profile
+      // @ts-ignore
       AppState.profile.currentGame = null
+      // @ts-ignore
       AppState.profile.currentPoints = 0
+      // @ts-ignore
       AppState.profile.roomPin = ''
       const editedProfile = {
         currentGame: null,
@@ -106,8 +109,10 @@ class GameService {
 
   async endGame(gameId) {
     try {
-      await api.put('api/games/' + gameId + '/endgame')
+      const gameEnded = 'this string'
+      await api.put('api/games/' + gameId + '/endgame', gameEnded)
       AppState.gameQuestions = []
+      this.getGames()
     } catch (error) {
       logger.error(error)
     }

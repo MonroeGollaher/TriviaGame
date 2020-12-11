@@ -61,6 +61,7 @@ export default {
     return {
       state,
       profile: computed(() => AppState.profile),
+      gameQuestions: computed(() => AppState.gameQuestions),
       activeQuestion: computed(() => AppState.activeQuestion),
       teamAnswer(questionId) {
         // logger.log('TeamActiveGame', AppState.activeQuestion)

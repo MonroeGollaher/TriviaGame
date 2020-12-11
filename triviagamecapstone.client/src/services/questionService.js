@@ -48,6 +48,27 @@ class QuestionService {
     }
   }
 
+  async previousQuestion(gameId) {
+    // NOTE - cycles through the questions attached to the current game
+    try {
+      // @ts-ignore
+      let previousQuestion = AppState.gameQuestions.findIndex(q => q._id === AppState.activeQuestion._id)
+      previousQuestion--
+      if (previousQuestion === AppState.gameQuestions.length) {
+        AppState.activeQuestion = {}
+        return previousQuestion
+      } else {
+        AppState.teamAnswers = []
+        // AppState.activeQuestion = AppState.gameQuestions[previousQuestion]
+        // need to pass through actual gameId, and update activequestioncomponenet to show the active question on game model.
+
+        await api.put('/api/questions/' + gameId, AppState.gameQuestions[previousQuestion])
+      }
+    } catch (error) {
+      logger.error(error)
+    }
+  }
+
   async getQuestions(numberOfQuestions, gameId) {
     // NOTE - fetches questions from the trivia api
     try {

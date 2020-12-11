@@ -1,6 +1,8 @@
 import io from 'socket.io-client'
+import router from '../router'
 import { AppState } from '../AppState'
 import { logger } from '../utils/Logger'
+import { AuthService } from './AuthService'
 
 let socket = {}
 class SocketService {
@@ -28,6 +30,15 @@ class SocketService {
       } else {
         AppState.gameTeams.push(data)
       }
+    })
+    socket.on('endGame', data => {
+      AppState.user = AuthService.user
+      if (AuthService.hasRoles('Host')) {
+        router.push({ name: 'AdminHomePage' })
+      } else {
+        router.push({ name: 'TeamJoinGame' })
+      }
+      logger.log(data, 'hello from end game function')
     })
   }
 
