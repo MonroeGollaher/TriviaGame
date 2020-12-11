@@ -35,9 +35,9 @@
         <GameLeaderBoard v-for="t in teamRanking" :key="t" :team-prop="t" />
       </div>
     </div>
-    <div class="row justify-content-end">
+    <div class="row justify-content-end" v-if="activeQuestion && lastQuestion">
       <div class="col-4 mt-5 mb-5 d-flex justify-content-end mr-4">
-        <button @click="pauseGame" class="btn btn-warning ml-5 mr-2">
+        <button @click="pauseGame" class="btn btn-warning ml-5 mr-2" v-if="activeQuestion._id !== lastQuestion._id">
           Pause Game
         </button>
         <button @click="endGame(activeGame._id)" class="btn btn-danger ml-5 mr-5">
@@ -70,6 +70,7 @@ export default {
     })
     return {
       activeQuestion: computed(() => AppState.activeQuestion),
+      lastQuestion: computed(() => AppState.gameQuestions[AppState.gameQuestions.length - 1]),
       activeGame: computed(() => AppState.activeGame),
       answers: computed(() => AppState.teamAnswers),
       teams: computed(() => AppState.gameTeams),
