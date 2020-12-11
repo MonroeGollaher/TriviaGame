@@ -29,6 +29,9 @@ class SocketService {
         AppState.gameTeams.push(data)
       }
     })
+    socket.on('endGame', data => {
+      logger.log(data, 'hello from end game function')
+    })
   }
 
   joinRoom(roomName) {
