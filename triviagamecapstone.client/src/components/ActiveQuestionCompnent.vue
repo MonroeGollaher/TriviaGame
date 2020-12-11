@@ -8,12 +8,16 @@
       <h3>Answer:</h3>
       <p v-html="activeQuestion.answer">
       </p>
-      <button @click="previousQuestion" class="btn btn-success text-light">
-        Previous
-      </button>
-      <button @click="nextQuestion" class="btn btn-primary text-light" v-if="activeQuestion._id !== lastQuestion._id">
-        Next Question
-      </button>
+      <h3>Wrong Answers:</h3>
+      <wrong-answer-component v-for="wrongAnswer in wrongAnswers" :wrong-answer-prop="wrongAnswer" :key="wrongAnswer" />
+      <div class="d-flex justify-content-between">
+        <button @click="previousQuestion" class="btn btn-warning text-light">
+          Previous
+        </button>
+        <button @click="nextQuestion" class="btn btn-primary text-light" v-if="activeQuestion._id !== lastQuestion._id">
+          Next Question
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -35,6 +39,7 @@ export default {
     })
     return {
       activeQuestion: computed(() => AppState.activeQuestion),
+      wrongAnswers: computed(() => AppState.wrongAnswers),
       lastQuestion: computed(() => AppState.gameQuestions[AppState.gameQuestions.length - 1]),
       authService: computed(() => AuthService),
       async nextQuestion() {

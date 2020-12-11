@@ -21,6 +21,9 @@ class QuestionService {
         // @ts-ignore
         AppState.activeQuestion = AppState.gameQuestions.find(q => q.id === AppState.activeGame.activeQuestion.id)
       }
+      for (let i = 0; i < AppState.activeQuestion.wrongAnswers.length; i++) {
+        AppState.wrongAnswers.push(AppState.activeQuestion.wrongAnswers[i])
+      }
       // logger.log(AppState.activeQuestion)
     } catch (error) {
       logger.error(error)
