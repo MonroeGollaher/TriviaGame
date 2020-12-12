@@ -6,9 +6,10 @@ import { AuthService } from './AuthService'
 import { questionService } from './questionService'
 
 let socket = {}
+const baseURL = window.location.origin.includes('localhost') ? '//localhost:3000' : ''
 class SocketService {
   initializeSocket() {
-    socket = io('//localhost:3000/')
+    socket = io(baseURL)
 
     socket.on('CONNECTED', data => {
       logger.log(data.message + ' Let the villany commence')
