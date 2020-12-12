@@ -4,7 +4,7 @@
     <h2 class="my-1">
       New Game
     </h2>
-    <form @submit="createGame">
+    <form @submit.prevent="createGame">
       <div class="form-group">
         <label for="exampleInputEmail1">Game Title</label>
         <input type="text"
@@ -46,9 +46,8 @@ export default {
   components: {},
   setup() {
     const state = reactive({
-      newGame: {
+      newGame: {}
 
-      }
     })
     onMounted(async() => {
       await gameService.getGames()
@@ -58,6 +57,7 @@ export default {
       createGame() {
         // logger.log(state.newGame)
         gameService.createGame(state.newGame)
+        state.newGame = {}
       }
     }
   }
