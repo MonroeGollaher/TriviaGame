@@ -40,7 +40,7 @@ export class QuestionController extends BaseController {
 
   async nextQuestion(req, res, next) {
     try {
-      await gameService.updateQuestion(req.params.gameId, req.body)
+      res.send(await gameService.updateQuestion(req.params.gameId, req.body))
       await socketService.messageRoom('activeGame', 'nextQuestion', req.body)
     } catch (error) {
       next(error)

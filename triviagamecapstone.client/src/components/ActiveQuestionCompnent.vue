@@ -43,7 +43,7 @@ export default {
       lastQuestion: computed(() => AppState.gameQuestions[AppState.gameQuestions.length - 1]),
       authService: computed(() => AuthService),
       async nextQuestion() {
-        questionService.nextQuestion(route.params.gameId)
+        await questionService.nextQuestion(route.params.gameId)
       },
       async previousQuestion() {
         questionService.previousQuestion(route.params.gameId)
