@@ -66,6 +66,7 @@ export default {
       teamAnswer(questionId) {
         // logger.log('TeamActiveGame', AppState.activeQuestion)
         answerService.submitAnswer(state.answer, questionId)
+        state.answer = {}
       },
       removeTeam(profileId) {
         gameService.removeTeam(profileId)

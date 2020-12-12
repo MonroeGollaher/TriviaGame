@@ -20,5 +20,5 @@ Response.virtual('creator', {
   foreignField: '_id',
   justOne: true
 })
-
+Response.index({ teamId: 1, questionId: 1 }, { unique: true })
 export default Response
