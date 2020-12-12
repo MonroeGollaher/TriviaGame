@@ -17,10 +17,14 @@ class QuestionService {
     try {
       if (AppState.activeQuestion === undefined) {
         AppState.activeQuestion = AppState.gameQuestions[0]
-      } else {
+      } else if (typeof (AppState.activeGame.activeQuestion) !== 'object') {
         // @ts-ignore
-        AppState.activeQuestion = AppState.gameQuestions.find(q => q.id === AppState.activeGame.activeQuestion.id)
+        AppState.activeQuestion = AppState.gameQuestions[0]
+        AppState.activeGame.activeQuestion = AppState.gameQuestions[0]
       }
+      logger.log(AppState)
+      AppState.wrongAnswers = []
+
       for (let i = 0; i < AppState.activeQuestion.wrongAnswers.length; i++) {
         AppState.wrongAnswers.push(AppState.activeQuestion.wrongAnswers[i])
       }
@@ -32,20 +36,26 @@ class QuestionService {
 
   async nextQuestion(gameId) {
     // NOTE - cycles through the questions attached to the current game
+    // @ts-ignore
     try {
       // @ts-ignore
       let nextQuestion = AppState.gameQuestions.findIndex(q => q._id === AppState.activeQuestion._id)
       nextQuestion++
       if (nextQuestion === AppState.gameQuestions.length) {
         AppState.activeQuestion = {}
-        return nextQuestion
+        // return nextQuestion
       } else {
         AppState.teamAnswers = []
         // AppState.activeQuestion = AppState.gameQuestions[nextQuestion]
         // need to pass through actual gameId, and update activequestioncomponenet to show the active question on game model.
-
+        logger.log('next question is', AppState.gameQuestions, nextQuestion)
         await api.put('/api/questions/' + gameId, AppState.gameQuestions[nextQuestion])
       }
+      // AppState.wrongAnswers = []
+
+      // for (let i = 0; i < AppState.activeQuestion.wrongAnswers.length; i++) {
+      //   AppState.wrongAnswers.push(AppState.activeQuestion.wrongAnswers[i])
+      // }
     } catch (error) {
       logger.error(error)
     }

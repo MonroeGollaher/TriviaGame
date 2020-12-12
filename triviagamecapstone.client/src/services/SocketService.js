@@ -3,6 +3,7 @@ import router from '../router'
 import { AppState } from '../AppState'
 import { logger } from '../utils/Logger'
 import { AuthService } from './AuthService'
+import { questionService } from './questionService'
 
 let socket = {}
 class SocketService {
@@ -16,6 +17,7 @@ class SocketService {
     socket.on('nextQuestion', data => {
       logger.log('next question?', data)
       AppState.activeQuestion = data
+      questionService.showActiveQuestion()
     })
     socket.on('teamAnswer', data => {
       logger.log('hi answers are working!')
