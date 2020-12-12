@@ -15,6 +15,7 @@ class GameService {
   async joinGame(userInfo, pin, body) {
     const exists = await dbContext.Games.findOne({ roomPin: pin })
     if (exists) {
+      // @ts-ignore
       body.currentGame = exists._doc._id
       return await dbContext.Profile.findByIdAndUpdate(userInfo.id, body, { new: true })
     } else {

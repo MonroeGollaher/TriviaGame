@@ -17,15 +17,19 @@ class QuestionService {
     try {
       if (AppState.activeQuestion === undefined) {
         AppState.activeQuestion = AppState.gameQuestions[0]
+      // @ts-ignore
       } else if (typeof (AppState.activeGame.activeQuestion) !== 'object') {
         // @ts-ignore
         AppState.activeQuestion = AppState.gameQuestions[0]
+        // @ts-ignore
         AppState.activeGame.activeQuestion = AppState.gameQuestions[0]
       }
       logger.log(AppState)
       AppState.wrongAnswers = []
 
+      // @ts-ignore
       for (let i = 0; i < AppState.activeQuestion.wrongAnswers.length; i++) {
+        // @ts-ignore
         AppState.wrongAnswers.push(AppState.activeQuestion.wrongAnswers[i])
       }
       // logger.log(AppState.activeQuestion)

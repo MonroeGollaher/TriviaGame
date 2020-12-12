@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0c19e3"],{"478b":function(n,e,c){"use strict";c.r(e);var t=c("7a23");const o={class:"about container-fluid"};function a(n,e,c,a,s,u){return Object(t["s"])(),Object(t["e"])("div",o)}var s={name:"AboutPage",components:{}};s.render=a;e["default"]=s}}]);
