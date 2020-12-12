@@ -22,7 +22,6 @@ class AnswerService {
     try {
       await api.post('/api/responses/response/' + questionId, answerData)
       await this.getResponses()
-      // AppState.teamAnswers = [...AppState.teamAnswers, res.data]
       // logger.log('submit answer', AppState.teamAnswers)
     } catch (error) {
       logger.error(error)
