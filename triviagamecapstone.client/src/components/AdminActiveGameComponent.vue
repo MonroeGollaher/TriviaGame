@@ -2,10 +2,10 @@
 <template>
   <div class="adminActiveGameComponent container-fluid">
     <div class="container">
-      <h1 class="mt-3">
+      <h1 class="mt-3 heading">
         {{ activeGame.title }}
       </h1>
-      <p class="lead">
+      <p class="lead heading">
         Room Code: {{ activeGame.roomPin }}
       </p>
     </div>
@@ -92,5 +92,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.heading {
+  color:  #ebebeb;
+}
 </style>

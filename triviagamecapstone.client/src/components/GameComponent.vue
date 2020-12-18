@@ -59,4 +59,7 @@ export default {
   .game-component {
     max-width: 40vw;
   }
+  // h5 {
+  //   color: var(--dark);
+  // }
 </style>

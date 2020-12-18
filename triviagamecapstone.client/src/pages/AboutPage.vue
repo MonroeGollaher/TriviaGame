@@ -10,3 +10,9 @@ export default {
   components: { }
 }
 </script>
+
+<style lang="scss" scoped>
+.about {
+  background-color: var(--secondary);
+}
+</style>

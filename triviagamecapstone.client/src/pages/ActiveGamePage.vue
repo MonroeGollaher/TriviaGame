@@ -42,5 +42,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.ActiveGamePage {
+  background-color: var(--secondary);
+}
 </style>

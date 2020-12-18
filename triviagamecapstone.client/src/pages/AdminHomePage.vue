@@ -41,5 +41,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.adminHomePage{
+  background-color: var(--secondary);
+}
+h1{
+  color:  #ebebeb;
+}
 </style>

@@ -4,7 +4,7 @@
       <div class="d-flex align-items-center justify-content-center">
         <i class="fas fa-book-open text-light mr-3"></i>
         <h5 class="mb-0">
-          Insert Name Here
+          Bar Trivia
         </h5>
       </div>
     </router-link>
@@ -33,13 +33,13 @@
         </li>
         <li class="nav-item">
           <router-link :to="{ name: 'AdminHomePage' }" class="nav-link">
-            Game Page
+            PLAY
           </router-link>
         </li>
       </ul>
       <span class="navbar-text">
         <button
-          class="btn btn-outline-primary text-uppercase"
+          class="btn btn-outline-warning text-uppercase"
           @click="login"
           v-if="!user.isAuthenticated"
         >
@@ -126,6 +126,7 @@ a:hover {
   text-transform: uppercase;
 }
 .nav-item .nav-link.router-link-exact-active{
-  color: var(--primary);
+  color: #f6b849;
 }
+
 </style>
