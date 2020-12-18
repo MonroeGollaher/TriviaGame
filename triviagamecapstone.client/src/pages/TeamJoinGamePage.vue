@@ -1,28 +1,26 @@
 <!-- //NOTE - This page is displayed after a team has logged in and allows the team to input a room code and join the active game -->
 <template>
-  <div class="TeamJoinGame container-fluid align-items-center">
-    <div class="row justify-content-center align-items-center">
-      <div class="col-12 col-lg-6">
-        <h3 class="font-weight-bold">
-          Join A Game
-        </h3>
-      </div>
+  <div class="TeamJoinGame container-fluid">
+    <div class="row text-center mt-5">
+      <h3 class="col-12 col-lg-6 font-weight-bold">
+        Join A Game
+      </h3>
     </div>
     <div class="row justify-content-center align-items-center">
       <div class="col-12 col-lg-6">
-        <p>
+        <p class="text-center">
           Please enter team name & room code
           <!-- TODO  need to add game id to profile under currentGame -->
         </p>
-        <form @submit.prevent="joinGame()">
+        <form @submit.prevent="joinGame()" class="d-flex flex-column justify-content-center align-items-center">
           <div class="p-2">
             <input type="text" placeholder="Team Name" v-model="state.profile.teamName">
           </div>
           <div class="p-2">
             <input type="text" placeholder="Room Pin" v-model="state.profile.roomPin">
           </div>
-          <div class="p-2">
-            <button type="submit" class="btn btn-success">
+          <div class="p-2 align-self-start ml-5 pl-4">
+            <button type="submit" class="btn btn-dark text-white">
               Join
             </button>
           </div>
@@ -59,5 +57,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.TeamJoinGame {
+  background-color: var(--secondary);
+}
+h3, p {
+  color:  #ebebeb;
+}
 </style>

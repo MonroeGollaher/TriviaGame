@@ -11,7 +11,7 @@
                class="form-control"
                id="gameTitle"
                aria-describedby="gameTitle"
-               placeholder="What do you want to call your game?"
+               placeholder="Game Name?"
                v-model="state.newGame.title"
         >
       </div>
@@ -65,5 +65,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+// h2, label {
+//   color: var(--dark);
+// }
 </style>

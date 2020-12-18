@@ -1,7 +1,9 @@
 <!--// NOTE - This component displays the current question to the host and teams, and displays the answer and next question option to the host -->
 <template>
   <div class="activeQuestion-component container-fluid radius25 card shadow justify-content-center p-4" v-if="activeQuestion && lastQuestion">
-    <h3>Question:</h3>
+    <h3 v-if="authService.hasRoles('Host')">
+      Question:
+    </h3>
     <p v-html="activeQuestion.question">
     </p>
     <div v-if="authService.hasRoles('Host')">

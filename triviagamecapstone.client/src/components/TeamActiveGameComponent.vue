@@ -2,19 +2,21 @@
 <template>
   <div class="TeamActiveGame container-fluid">
     <div class="row justify-content-center align-items-center">
-      <div class="col-12 col-lg-6">
-        <h5>
-          Point Standing: TeamPoints
+      <div class="col-12 col-lg-6 text-center">
+        <h5 class="heading">
+          Point Standing: {{ profile.currentPoints }}
         </h5>
-        <p>
+        <p class="heading">
           Round: RoundNumber
         </p>
       </div>
     </div>
     <div class="row justify-content-center align-items-center">
       <div class="col-12 col-lg-6">
+        <h3 class="mb-2 heading text-center">
+          Current Question:
+        </h3>
         <h3>
-          CurrentQuestion:
           <!-- //NOTE - This component displays the current question for the team -->
           <active-question-component />
         </h3>
@@ -22,18 +24,18 @@
     </div>
     <div class="row justify-content-center align-items-center">
       <div class="col-12 col-lg-6" v-if="activeQuestion">
-        <form @submit.prevent="teamAnswer(activeQuestion._id)" class="d-flex flex-column">
-          <input type="text" v-model="state.answer.wager" placeholder="Point Wager">
-          <input type="text" v-model="state.answer.answer" placeholder="Team Answer">
-          <button type="submit" class="btn btn-success">
+        <form @submit.prevent="teamAnswer(activeQuestion._id)" class="d-flex flex-column my-1">
+          <input type="text" v-model="state.answer.wager" placeholder="Point Wager" class="my-1">
+          <input type="text" v-model="state.answer.answer" placeholder="Team Answer" class="my-1">
+          <button type="submit" class="btn btn-success my-1">
             Submit Answer
           </button>
         </form>
       </div>
     </div>
-    <div class="row">
+    <div class="row justify-content-end align-items-end">
       <div class="col-12 col-6-lg">
-        <button @click="removeTeam(profile.id)" class="btn btn-danger">
+        <button @click="removeTeam(profile.id)" class="btn btn-sm btn-danger mt-5">
           Forfiet Game?
         </button>
       </div>
@@ -79,5 +81,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.heading {
+  color:  #ebebeb;
+}
 </style>
