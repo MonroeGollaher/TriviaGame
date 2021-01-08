@@ -11,6 +11,29 @@
         Video
       </div>
     </div>
+    <div class="row">
+      <div class="col-12">
+        <h4>
+          Host Login:
+        </h4>
+      </div>
+      <div class="col-12">
+        <h4>
+          Email: tom@triviagame.com
+        </h4>
+      </div>
+      <div class="col-12">
+        <h4>
+          Password: Password123
+        </h4>
+      </div>
+      <div class="col-12">
+        <h4>
+          Both the user, and host can hit Play to start.
+          Players are free to create their own accounts!
+        </h4>
+      </div>
+    </div>
   </div>
 </template>
 
