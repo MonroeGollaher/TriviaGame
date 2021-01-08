@@ -29,7 +29,7 @@
       </div>
       <div class="col-12">
         <h4>
-          Both the user, and host can hit Play to start.
+          Both the players, and host can hit Play to start once logged in.
           Players are free to create their own accounts!
         </h4>
       </div>
