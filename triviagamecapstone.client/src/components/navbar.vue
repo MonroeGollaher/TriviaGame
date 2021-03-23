@@ -126,7 +126,10 @@ a:hover {
   text-transform: uppercase;
 }
 .nav-item .nav-link.router-link-exact-active{
-  color: #f6b849;
+  /* color: #f6b849; */
+}
+.navbar {
+  background: linear-gradient(to right, rgba(124,184,255,1) ,rgba(252,169,205,1));
 }
 
 </style>

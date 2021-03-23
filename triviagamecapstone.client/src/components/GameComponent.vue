@@ -1,21 +1,19 @@
 <!-- //NOTE - This component that displays the title of a game that the host has created and allows them to launch the game or delete it -->
 <template>
   <div class="game-component container-fluid">
-    <div class="col-12">
-      <div class="row justify-content-between align-items-center border-rounded bg-light shadow my-3 radius25 p-4">
-        <div class="col-8 d-flex flex-column justify-content-center align-items-center">
-          <h5 class="mb-0">
-            {{ gameProp.title }}
-          </h5>
-        </div>
-        <div class="col-4 d-flex py-2 justify-content-end">
-          <button class="btn bg-transparent text-success" @click="startGame(game._id)">
-            <i class="far fa-play-circle"></i>
-          </button>
-          <button class="btn bg-transparent text-danger ml-1" @click="deleteGame(game._id)">
-            <i class="far fa-trash-alt"></i>
-          </button>
-        </div>
+    <div class="row align-items-center border-rounded bg-light shadow my-3 radius25 p-4">
+      <div class="col-10 align-items-center">
+        <h5 class="mb-0">
+          {{ gameProp.title }}
+        </h5>
+      </div>
+      <div class="col-2 d-flex">
+        <button class="btn bg-transparent text-success" @click="startGame(game._id)">
+          <i class="far fa-play-circle"></i>
+        </button>
+        <button class="btn bg-transparent text-danger" @click="deleteGame(game._id)">
+          <i class="far fa-trash-alt"></i>
+        </button>
       </div>
     </div>
   </div>

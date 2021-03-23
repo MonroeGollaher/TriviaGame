@@ -58,7 +58,7 @@ export default {
 
 <style lang="scss" scoped>
 .TeamJoinGame {
-  background-color: var(--secondary);
+    background: linear-gradient(to right, rgba(124,184,255,1) ,rgba(252,169,205,1));
 }
 h3, p {
   color:  #ebebeb;

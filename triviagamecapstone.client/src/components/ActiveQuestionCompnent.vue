@@ -13,10 +13,10 @@
       <h3>Wrong Answers:</h3>
       <wrong-answer-component v-for="wrongAnswer in wrongAnswers" :wrong-answer-prop="wrongAnswer" :key="wrongAnswer" />
       <div class="d-flex justify-content-between">
-        <button @click="previousQuestion" class="btn btn-warning text-light">
+        <button @click="previousQuestion" class="btn btn-warning text-light radius10">
           Previous
         </button>
-        <button @click="nextQuestion" class="btn btn-primary text-light" v-if="activeQuestion._id !== lastQuestion._id">
+        <button @click="nextQuestion" class="btn btn-primary text-light radius10" v-if="activeQuestion._id !== lastQuestion._id">
           Next Question
         </button>
       </div>

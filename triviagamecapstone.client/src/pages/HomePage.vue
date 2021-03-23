@@ -2,36 +2,31 @@
   <div class="home container-fluid">
     <div class="row justify-content-center align-items-center h-50">
       <div class="col-12 col-lg-6">
-        <h1>Welcome!</h1>
-        <h5>An app for managing bar trivia games for hosts and players.</h5>
+        <h1 class="display-4 text-light">
+          Welcome!
+        </h1>
+        <h5 class="display-4 text-light">
+          An app for managing bar trivia games for hosts and players.
+        </h5>
       </div>
     </div>
-    <div class="row justify-content-center align-items-center">
-      <div class="col-12 col-lg-6">
-        Video
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <h4>
-          Host Login:
-        </h4>
-      </div>
-      <div class="col-12">
-        <h4>
+    <div class="row justify-content-center border-rounded">
+      <div class="col-4 radius25 py-3">
+        <p class="lead text-light">
+          <b>Host Demo Login:</b>
+        </p>
+        <p class="lead text-light">
           Email: tom@triviagame.com
-        </h4>
-      </div>
-      <div class="col-12">
-        <h4>
+        </p>
+        <p class="lead text-light">
           Password: Password123
-        </h4>
-      </div>
-      <div class="col-12">
-        <h4>
-          Both the players, and host can hit Play to start once logged in.
+        </p>
+        <p class="lead text-light py-3">
+          Both players and hosts can hit Play to start once logged in.
+        </p>
+        <p class="lead text-light">
           Players are free to create their own accounts!
-        </h4>
+        </p>
       </div>
     </div>
   </div>
@@ -54,14 +49,7 @@ export default {
     height: 200px;
     width: 200px;
   }
-  background-color: #f6b849;
-}
-h1, h5{
-  color: #ebebeb;
-  font-weight: 800;
-}
-h1{
-  font-size: 6em;
+  background: linear-gradient(to right, rgba(124,184,255,1) ,rgba(252,169,205,1));
 }
 h5{
   font-size: 2em;

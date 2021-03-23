@@ -7,10 +7,10 @@
       </h1>
     </div>
     <div class="row justify-content-center">
-      <div class="col-4">
+      <div class="col-md-4 col-lg-3">
         <NewGame-component />
       </div>
-      <div class="col-6">
+      <div class="col-md-6 col-lg-4">
         <game-component v-for="g in games" :key="g" :game-prop="g" />
       </div>
     </div>
@@ -42,7 +42,7 @@ export default {
 
 <style lang="scss" scoped>
 .adminHomePage{
-  background-color: var(--secondary);
+  background: linear-gradient(to right, rgba(124,184,255,1) ,rgba(252,169,205,1));
 }
 h1{
   color:  #ebebeb;
